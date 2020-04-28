@@ -1,0 +1,14 @@
+.main {
+  width: 80vh;
+}
+
+.main {
+  &__tasks {
+    border: 1px solid black;
+    height: 50vh;
+  }
+  &__backlog {
+    border: 1px solid black;
+    height: 50vh;
+  }
+}
