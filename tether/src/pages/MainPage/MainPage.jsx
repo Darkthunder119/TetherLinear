@@ -1,8 +1,10 @@
-import React from "react";
-import SideNav from "../../components/SideNav/SideNav";
+
+import React from 'react';
+import SideNav from '../../components/SideNav/SideNav'
 import * as firebase from "firebase";
-class MainPage extends React.Component {
-  constructor(props) {
+import HeaderNav from '../../components/HeaderNav/HeaderNav'
+class MainPage extends React.Component{
+  constructor(props){
     super(props);
     this.auth = firebase.auth();
     this.state = {
@@ -43,13 +45,11 @@ class MainPage extends React.Component {
       this.mounted=false;
   }
 
-  render() {
-    console.log(this.state.user);
-    return (
-      <>
-        <SideNav />
-      </>
-    );
+  render(){
+    return <>
+      <SideNav />
+      <HeaderNav />
+    </>
   }
 }
 
