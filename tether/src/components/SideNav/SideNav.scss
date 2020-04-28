@@ -1,0 +1,42 @@
+.sidenav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20vw;
+  height: 100vh;
+  min-width: 200px;
+  border-right: 1px solid black;
+  
+  &__logo { font-size: 3rem; text-align: center }
+  &__icon { margin-right: 5px }
+  &__links { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 3.2rem;
+    height: 100%;
+    width: 100%;
+  }
+  &__link-container {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+
+    > li {
+      padding: 3px 15px;
+      font-size: 1.3rem;
+      cursor: pointer;
+
+      &:last-of-type {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+      }
+
+      &:hover {
+        color: #fff;
+        background-color: #000;
+      }
+    }
+  }
+}
