@@ -10,21 +10,18 @@ class LoginPage extends Component{
     this.gitProvider = new firebase.auth.GithubAuthProvider();
     this.googProvider = new firebase.auth.GoogleAuthProvider();
   }  
+
   onGitHubHandler = e => this.auth.signInWithPopup(this.gitProvider).then(data=>this.props.history.push('/')).catch(err=>console.log(err));
   
   onGoogleHandler = e => this.auth.signInWithPopup(this.googProvider).then(data=>this.props.history.push('/')).catch(err=>console.log(err));
 
   render(){
   return(
-    <div className="form-page">
-      <div className="form-page__overlay"></div>
-      <div className="form-page__form">
-        <div className="form-page__row">
-            <button onClick={this.onGitHubHandler} className="form-page__button form-page__button--gh" name="git">Connect with Github</button>
-        </div>
-        <div className="form-page__row">
-            <button onClick={this.onGoogleHandler} className="form-page__button form-page__button--go" name="face">Connect with Google</button>
-        </div>
+    <div className="login-page">
+      <div className="login-page__overlay"></div>
+      <div className="login-page__form">
+            <button onClick={this.onGitHubHandler} className="login-page__button login-page__button--gh" name="git">Connect with Github</button>
+            <button onClick={this.onGoogleHandler} className="login-page__button login-page__button--go" name="face">Connect with Google</button>
       </div>
     </div>
   );}
