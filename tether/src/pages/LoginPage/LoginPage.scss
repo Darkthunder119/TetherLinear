@@ -1,13 +1,11 @@
 
-.form-page {
+.login-page {
   width: 100vw;
   height: 100vh;
 //   background-image: url('../../assets/images/form-bg.jpg');
 //   background-size: cover;
 //   background-position: center;
   position: relative;
-
-  &__header { margin: 0 0 5px 0; color: #262626 }
   &__overlay {
     position: absolute;
     top: 0;
@@ -18,7 +16,7 @@
   }
 
   &__form {
-    max-width: 450px;
+    max-width: 750px;
     width: 80%;
     background-color: #FAFAFA;
     position: absolute;
@@ -30,30 +28,12 @@
     outline: none;
     border: none;
     box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.12);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
-  &__row { 
-    width: 100%;
-    margin: 10px 0;
-    &--button { margin-top: 40px; }
-  }
-  &__label, &__input { display: block; width: 100% }
-  &__input {
-    transition: .2s ease-in;
-    background-color: #FAFAFA;
-    border: none;
-    outline: none;
-    border-bottom: 0.5px solid #AFAFAF;
-    padding: 7px 15px;
-    text-align: center;
-    &:focus { border-bottom: 0.5px solid gray }
-  }
-
-  &__label {
-    font-size: 0.7rem;
-    color: #AFAFAF;
-  }
-  
   &__button {
+    
     background-color: #d6a542;
     font-size: .9rem;
     color: white;
@@ -61,16 +41,11 @@
     outline: none;
     border-radius: 50px;
     display: block;
-    width: 100%;
+    width: 400px;
     padding: 5px;
+    margin: 5%;
     cursor: pointer;
     &:hover { background-color: darken($color: #d6a542, $amount: 10%) }
-    &--fb { 
-      background-color: unset; 
-      border: 1px solid #3b5998; 
-      color: #3b5998;
-      &:hover { background-color: #3b5998; color: white; }
-    }
     &--gh { 
       background-color: unset; 
       border: 1px solid #211F1F; 
@@ -83,33 +58,6 @@
       color: #db4a39;
       &:hover { background-color: #db4a39; color: white; }
     }
-  }
-  &__tab {
-    display: inline-block;
-    position: absolute;
-    cursor: pointer;
-    top: -28px;
-    left: 0; 
-    border: 1px solid #d6a542;
-    border-bottom: none;
-    border-radius: 5px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    padding: 5px 15px;
-    font-size: 0.8rem;
-    background-color: #d6a542;
-    color: white;
-    &--active { 
-      top: -25px;
-      background-color: #FAFAFA;
-      border: none;
-      color: #262626;
-      box-shadow: 2px -2px 3px 1px rgba(0,0,0,0.12);
-    }
-  }
-  &__tab2 { 
-    @extend .form-page__tab;
-    left: 74px;
   }
   
 }
