@@ -1,11 +1,21 @@
 import React from 'react';
-import SideNav from './components/SideNav/SideNav';
-import './App.css';
+
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import LoginPage from './pages/LoginPage/LoginPage'
+import MainPage from './pages/MainPage/MainPage';
+
 
 function App() {
   return (
     <div className="App">
-      <SideNav />
+
+      <BrowserRouter >
+        <Switch>
+          <Route exact path='/' component={MainPage} />
+          <Route path='/login' component={LoginPage} />
+        </Switch>
+      </BrowserRouter>
+
     </div>
   );
 }
