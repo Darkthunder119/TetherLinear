@@ -1,0 +1,21 @@
+.task {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 5px;
+    padding: 16px;
+    &__section {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        &:nth-child(2) {
+            flex-direction: column;
+        }
+    }
+    &__button {
+        background-color: lightblue;
+        height: 30px;
+    }
+}
