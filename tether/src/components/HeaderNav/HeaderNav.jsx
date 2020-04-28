@@ -3,7 +3,7 @@ import React from 'react';
 import './HeaderNav.scss';
 
 export default function HeaderNav() {
-    
+
     return (
         <header className="header">
             
