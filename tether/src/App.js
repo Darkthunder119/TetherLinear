@@ -1,11 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import HeaderNav from './HeaderNav/HeaderNav';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
+          <HeaderNav />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           G TESTING STUFF
