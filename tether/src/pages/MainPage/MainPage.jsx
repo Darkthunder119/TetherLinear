@@ -1,8 +1,8 @@
 import React from "react";
 import SideNav from "../../components/SideNav/SideNav";
-import Body from "../../components/Body/Body";
 import * as firebase from "firebase";
 import HeaderNav from "../../components/HeaderNav/HeaderNav";
+import Body from "../../components/Body/Body";
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
