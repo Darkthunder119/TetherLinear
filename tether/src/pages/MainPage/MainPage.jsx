@@ -1,4 +1,5 @@
 import React from 'react';
+import HeaderNav from '../../components/HeaderNav/HeaderNav'
 
 class MainPage extends React.Component{
 constructor(props){
@@ -6,7 +7,11 @@ constructor(props){
 }
 
 render(){
-    return <>HIIII</>
+    return (
+        <>
+            <HeaderNav />
+        </>
+    )
 }
 }
 
