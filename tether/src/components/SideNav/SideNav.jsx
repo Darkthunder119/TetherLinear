@@ -2,8 +2,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTh, faChartBar, faStar, faQuestionCircle, faCog, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import './SideNav.scss';
+import * as firebase from 'firebase';
+
 
 export default function SideNav() {
+  const auth = firebase.auth();
+  const signOut = () =>{
+    auth.signOut();
+  }
   return(
     <nav className="sidenav">
       <div className="sidenav__logo">tether</div>
@@ -49,7 +55,7 @@ export default function SideNav() {
               Settings
             </span>
           </li>
-          <li>
+          <li onClick={signOut}>
             <span className="sidenav__icon">
               <FontAwesomeIcon icon={faSignOutAlt} />
             </span>
