@@ -2,8 +2,8 @@ import React from 'react';
 //import { NavLink } from 'react-router-dom';
 import './HeaderNav.scss';
 
-export default function HeaderNav() {
-
+export default function HeaderNav({openModal}) {
+  
     return (
         <header className="header">
             
@@ -15,7 +15,7 @@ export default function HeaderNav() {
             </nav>*/}
 
             <nav className="header__nav">
-                <span className="header__nav-link">Create</span>
+                <button className="header__nav-link" onClick={openModal}>Create</button>
                 <span className="header__nav-link">Notifications</span>
                 <span className="header__nav-link">Search</span>
                 <div className="header__nav-profile"></div>

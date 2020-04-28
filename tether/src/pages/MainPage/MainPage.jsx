@@ -1,18 +1,29 @@
 import React from 'react';
-import SideNav from '../../components/SideNav/SideNav'
+import SideNav from '../../components/SideNav/SideNav';
 import Body from "../../components/Body/Body";
 import "./MainPage.scss";
 import * as firebase from "firebase";
-import HeaderNav from '../../components/HeaderNav/HeaderNav'
+import HeaderNav from '../../components/HeaderNav/HeaderNav';
+import CreateModal from "../../components/CreateModal/CreateModal";
+
 class MainPage extends React.Component{
   constructor(props){
     super(props);
     this.auth = firebase.auth();
     this.state = {
       user: "",
+      modalIsOpen: false,
     };
   }
   mounted = false;
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modaIsOpen: false });
+  };
 
   authChange() {
     this.auth.onAuthStateChanged((cred) => {
@@ -49,7 +60,13 @@ class MainPage extends React.Component{
   render(){
     return <>
       <SideNav />
-      <HeaderNav />
+      <HeaderNav
+      openModal={this.openModal}
+      />
+      <CreateModal 
+      isOpen={this.state.modalIsOpen}
+      closeModal={this.closeModal}
+      />
       <Body />
     </>
   }
