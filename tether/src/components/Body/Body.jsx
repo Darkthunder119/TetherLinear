@@ -6,8 +6,8 @@ export default class Body extends Component {
     return (
       <>
         <main className="body">
-          <section className="body__tasks">ACTIVE TASKS SECTION</section>
-          <section className="body__backlog">BACKLOG SECTION</section>
+          <section className="body__tasks">TASKS</section>
+          <section className="body__backlog">BACKLOG</section>
         </main>
       </>
     );

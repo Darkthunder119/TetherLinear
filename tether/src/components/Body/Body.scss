@@ -1,8 +1,7 @@
 .body {
-  width: 80vh;
-  top: 100px;
+  width: 100vh;
+  top: 50px;
   left: 250px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -10,13 +9,9 @@
 
 .body {
   &__tasks {
-    border: 1px solid black;
     height: 200px;
-    width: 100vh;
   }
   &__backlog {
-    border: 1px solid black;
     height: 200px;
-    width: 100vh;
   }
 }
