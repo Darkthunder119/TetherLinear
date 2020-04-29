@@ -152,6 +152,7 @@ class MainPage extends React.Component{
           jiraTasks={jiraTasks ? jiraTasks : []} 
           personalGoals={personalgoals ? personalgoals : []}
           populateJiraTasks={this.populateJiraTasks} 
+          openModal={this.openModal}
         />
       </>
     } else {

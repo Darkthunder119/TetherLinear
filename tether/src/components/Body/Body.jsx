@@ -4,7 +4,7 @@ import TaskCard from "../TaskCard/TaskCard";
 
 export default class Body extends Component {
   render() {
-    const { personalGoals, jiraTasks } = this.props;
+    const { personalGoals, jiraTasks, openModal } = this.props;
     console.log(jiraTasks);
     console.log(personalGoals)
     return (
@@ -21,6 +21,7 @@ export default class Body extends Component {
             />
             <TaskCard 
               type="personal"
+              openModal={openModal}
               data={personalGoals}
             />
           </section>

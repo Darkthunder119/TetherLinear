@@ -77,7 +77,7 @@ renderPersonalCard = () => {
   )
 }
   renderCard = () => {
-    const { type, data } = this.props;
+    const { type, data, openModal } = this.props;
     return (
       <>
         {data.length
@@ -85,7 +85,7 @@ renderPersonalCard = () => {
           ? this.renderJiraCard()
           : this.renderPersonalCard()
         
-        :   <div className="task--alt">
+        :   <div className="task--alt" onClick={openModal}>
                 <span className="task__add">
                     <FontAwesomeIcon icon={faPlus} />
                 </span>
