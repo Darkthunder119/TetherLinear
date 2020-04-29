@@ -17,8 +17,7 @@ export default class JiraList extends Component {
                   (val) =>
                     val[2] != "Done" &&
                     val[0] !== this.props.currTask.ticketNumber
-                ).length
-              }{" "}
+                ).length}
               )
             </h1>
             <div className="jira__container">
