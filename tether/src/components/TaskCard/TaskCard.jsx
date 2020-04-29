@@ -44,8 +44,14 @@ export default class TaskCard extends Component {
     handleSubmit(e) {
     const { ticketNumber, assignee } = this.props.currTask;
     axios.get(`https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
-    .then(res => { console.log('task done')})
-      this.setState(state => ({
+    .then(res=>console.log('done!'))
+    .catch(err=>console.log(err));
+
+    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/user?message=Looking%20for%20things%20to%20do`)
+    .then(res=>console.log('done!'))
+    .catch(err=>console.log(err));
+
+    this.setState(state => ({
       isModalOpen: !state.isModalOpen
     }));
 
