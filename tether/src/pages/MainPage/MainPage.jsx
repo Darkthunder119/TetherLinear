@@ -149,9 +149,9 @@ class MainPage extends React.Component{
           currentUser={this.state.user}
         />
         <Body 
-          jiraTasks={jiraTasks} 
+          jiraTasks={jiraTasks ? jiraTasks : []} 
+          personalGoals={personalgoals ? personalgoals : []}
           populateJiraTasks={this.populateJiraTasks} 
-          personalGoals={personalgoals}
         />
       </>
     } else {
