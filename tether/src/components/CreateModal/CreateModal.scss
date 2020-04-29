@@ -2,29 +2,41 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 600px;
-  height: 50vw;
+  width: 700px;
+  height: 70vh;
   padding: 16px 40px;
 
   &__heading {
     font-size: 32px;
     margin: 20px 0;
   }
+  &__subheading-wrap {
+    display: flex;
+  }
+  &__subheading {
+    font-size: 18px;
+    font-weight: 400;
+    color: grey;
+    margin: 0;
+    &--second {
+      margin-left: 387px;
+    }
+  }
   &__row {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
   }
   &__field {
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
   }
-  &__label {
-    font-size: 16px;
-    color: grey;
-  }
+
   &__input {
     font-size: 16px;
-    width: 500px;
-    height: 50px;
+    width: 400px;
+    height: 45px;
     padding-top: 2px;
     padding-left: 20px;
     border: 1px solid lightgrey;
@@ -38,15 +50,36 @@
     &:focus{
       outline: none;
     }
-    &--large {
-      height: 80px;
-      padding-top: 10px;
-      margin-bottom: 20px;
-      resize: none;
+    &--small {
+      align-self: center;
+      width: 60px;
     }
   }
+  &__remove-btn {
+    font-size: 14px;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    &:hover {
+      border: 1px solid darkgrey;
+    }
+  }
+  &__add-btn {
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    margin: 10px 0;
+    background-color: #1457DB;
+  }
   &__buttonwrap {
-
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
@@ -61,11 +94,11 @@
     border: none;
     border-radius: 5px;
     font-family: Helvetica;
-    color: blue;
+    color:#1457DB;
     cursor: pointer;
 
     &--blue {
-      background-color: blue;
+      background-color: #1457DB;
       color: white;
       cursor: pointer;
     }
