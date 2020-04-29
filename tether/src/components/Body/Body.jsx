@@ -3,12 +3,13 @@ import "./Body.scss";
 
 export default class Body extends Component {
   render() {
-    console.log(this.props.jiraTasks);
+    console.log(this.props.jiraTasks)
     return (
       <>
         <main className="body">
           <section className="body__tasks">ACTIVE TASKS SECTION</section>
           <section className="body__backlog">BACKLOG SECTION</section>
+          <button className="temporaryButton" onClick={this.props.populateJiraTasks}>CLICK ME TO POPULATE DATABASE AND REFRESH</button>
         </main>
       </>
     );
