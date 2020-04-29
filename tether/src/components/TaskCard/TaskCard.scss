@@ -30,7 +30,6 @@
         padding: 40px 60px;
         cursor: pointer;
     }
-
     &__section {
         display: flex;
         justify-content: space-between;
@@ -39,7 +38,15 @@
             flex-direction: column;
         }
     }
-
+    &__heading {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+    }
+    &__todo {
+      font-weight: 700;
+      font-size: 20px;
+    }
     &__button {
         cursor: pointer;
         background-color: $primary;
@@ -121,5 +128,9 @@
     &__todo {
       display: flex;
       justify-content: space-between;
+      height: 50px;
+      padding-top: 10px;
+      border-bottom: 1px solid #BFBFBF;
     }
+
 }

@@ -11,6 +11,7 @@ export default class Body extends Component {
       currUser,
       currTask,
       jiraList,
+      openModal,
     } = this.props;
     console.log(jiraTasks);
     console.log(personalGoals);
@@ -27,7 +28,11 @@ export default class Body extends Component {
               title="UI For Components"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
             />
-            <TaskCard type="personal" data={personalGoals} />
+            <TaskCard
+              type="personal"
+              openModal={openModal}
+              data={personalGoals}
+            />
           </section>
           <section className="">
             <JiraList

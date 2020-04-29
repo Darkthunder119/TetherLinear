@@ -8,6 +8,7 @@ import firebase from "firebase/app";
 import "firebase/firebase-auth";
 import "firebase/firebase-database";
 import axios from "axios";
+import { createPortal } from "react-dom";
 
 const API_URL = "https://bstn-jira-integration.herokuapp.com";
 
@@ -16,6 +17,7 @@ class MainPage extends React.Component {
     super(props);
     this.auth = firebase.auth();
     this.users = firebase.database().ref("users");
+    this.timerId = 0;
     this.state = {
       user: "",
       modalIsOpen: false,
@@ -142,11 +144,24 @@ class MainPage extends React.Component {
 
     if (!this.state.user.id) {
       this.retrieveUsersFromDatabase(this.state.user);
+    } else {
+      if (this.state.user.data && this.state.user.data.currentTask) {
+        let time = this.state.user.data.currentTask.timestamp / 1000;
+        clearInterval(this.timerId);
+        this.timerId = setInterval(() => {
+          if (Math.floor((Date.now() / 1000 - time) % 60) === 0) {
+            alert(
+              "You hardworker! Take a break and check out your personal weekly tasks!"
+            );
+          }
+        }, 1000);
+      }
     }
   }
 
   componentWillUnmount() {
     this.mounted = false;
+    clearInterval(this.timerId);
   }
 
   render() {
@@ -169,6 +184,7 @@ class MainPage extends React.Component {
             populateJiraTasks={this.populateJiraTasks}
             currUser={this.state.user.id}
             currTask={currentTask ? currentTask : null}
+            openModal={this.openModal}
           />
         </>
       );

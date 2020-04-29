@@ -59,7 +59,6 @@ const JiraCard = (props) => {
   };
   priorityFn(props.priority);
   arrowFn(props.priority);
-  //console.log(props);
 
   const setToFocus = () => {
     console.log(props.currUser);
@@ -68,7 +67,7 @@ const JiraCard = (props) => {
       name: props.name,
       assignee: props.assignee,
       priority: props.priority,
-      timeStamp: Date.Now(),
+      timestamp: Date.now(),
     };
     firebase
       .database()
