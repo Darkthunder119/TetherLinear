@@ -38,9 +38,6 @@ export default class TaskCard extends Component {
     }
     
     handleSubmit(e) {
-    this.setState(state => ({
-        isModalOpen: !state.isModalOpen
-        }));
     axios.get('https://bstn-jira-integration.herokuapp.com/jira/status?id=WP-2')
     .then(res => {
         console.log(res.config);
@@ -60,6 +57,9 @@ export default class TaskCard extends Component {
         //    maxContentLength
         //}
       })
+    this.setState(state => ({
+    isModalOpen: !state.isModalOpen
+    }));
     }
 
     handleModalChange() {
