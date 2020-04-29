@@ -1,20 +1,23 @@
 import React, {Component} from 'react'
 import './TaskCard.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Switch from "react-switch";
 import Modal from "react-modal";
 import axios from 'axios'
+import firebase from "firebase/app";
+import 'firebase/firebase-database';
 
 const modalStyles = {
     content: {
       position: "absolute",
-      padding: "0",
+      padding: "16px",
       top: "50%",
       left: "50%",
       right: "auto",
       bottom: "auto",
       marginRight: "-50%",
-      transform: "translate(-50%, -50%)",
-      padding: "16px"
+      transform: "translate(-50%, -50%)"
     },
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.6)"
@@ -38,9 +41,11 @@ export default class TaskCard extends Component {
     }
     
     handleSubmit(e) {
+
     axios.get('https://bstn-jira-integration.herokuapp.com/jira/status?id=WP-2')
     .then(res => {
         console.log(res.config);
+        
         //res.config: {
         //    url,
         //    method,
@@ -60,6 +65,13 @@ export default class TaskCard extends Component {
     this.setState(state => ({
     isModalOpen: !state.isModalOpen
     }));
+
+    firebase.database()
+        .ref("users/"+this.props.currUser)
+        .child("currentTask")
+        .remove()
+        //.update({assinge: "john"})
+
     }
 
     handleModalChange() {
@@ -73,12 +85,12 @@ export default class TaskCard extends Component {
     return (
       <div className="task">
         <div className="task__section">
-          <span className="task__ticket">{ticket}</span>
+          <h4 className="task__ticket">{ticket}</h4>
           <span className="task__options">...</span>
         </div>
 
         <div className="task__section">
-          <h4 className="task__title">{title}</h4>
+          <h2 className="task__title">{title}</h2>
           <p className="task__description">{description}</p>
         </div>
 
@@ -100,11 +112,13 @@ export default class TaskCard extends Component {
             isOpen={this.state.isModalOpen} 
             style={modalStyles}
             contentLabel="Submit"
-        >
-            <h4 className="task__modal-prompt">Are you sure you want to mark this Jira ticket as complete?</h4>
-            <div className="task__modal-button-container">
-                <button className="task__modal-button task__modal-button--blue" onClick={this.handleSubmit}>Submit</button>
-                <button className="task__modal-button" onClick={this.handleModalChange}>Cancel</button>
+        >   <div className="task__modal-content-container">
+                <h3 className="task__modal-prompt">Are you sure?</h3>
+                <h4 className="task__modal-prompt">This will mark <strong>{ticket}</strong> Jira ticket as completed.</h4>
+                <div className="task__modal-button-container">
+                    <button className="task__button" onClick={this.handleSubmit}>Submit Complete</button>
+                    <button className="task__button task__button--cancel" onClick={this.handleModalChange}>Cancel</button>
+                </div>
             </div>
         </Modal>
 
@@ -144,23 +158,26 @@ renderPersonalCard = () => {
   )
 }
   renderCard = () => {
-    const { type, data } = this.props;
+    const { type, data, currTask } = this.props;
     return (
       <>
-        {data.length
+        {(data && data.length) || currTask
         ? type === 'jira'
           ? this.renderJiraCard()
           : this.renderPersonalCard()
         
-        : <div className="task">
-            <button className="task__add-button">+</button>
-            <h4 className="task__title">Add Next Task</h4>
-          </div>
+        :   <div className="task--alt">
+                <span className="task__add">
+                    <FontAwesomeIcon icon={faPlus} />
+                </span>
+                <h3 className="task__title--placeholder">Add Personal Goal</h3>
+            </div>
         }
     </>
   )}
 
   render() {
+      console.log(this.props.currTask)
     return (
       this.renderCard() 
     );

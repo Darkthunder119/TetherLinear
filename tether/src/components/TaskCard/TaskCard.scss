@@ -1,15 +1,36 @@
+@import "../../styles/main.scss"; 
+
 .task {
-    width: 100%;
+    width: 580px;
     min-height: 30vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    border: 1px solid black;
+    justify-content: center;
+    background-color: $white;
+    border: 1px solid $seperator;
     border-radius: 15px;
-    padding: 24px;
-    &__personal { justify-content: flex-start }
+    padding: 40px 60px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px;
+
+    &__personal { 
+        justify-content: flex-start 
+    }
+
+    &--alt {
+        width: 580px;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $placeholder;
+        border: 1px solid $seperator;
+        border-radius: 15px;
+        padding: 40px 60px;
+        cursor: pointer;
+    }
+
     &__section {
         display: flex;
         justify-content: space-between;
@@ -18,12 +39,26 @@
             flex-direction: column;
         }
     }
+
     &__button {
         cursor: pointer;
-        background-color: #1457DB;
+        background-color: $primary;
         color: white;
         height: 30px;
         border-radius: 5px;
+        width: 180px;
+        height: 44px;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+        &:hover {
+            font-weight: bold;
+          }
+        &--cancel {
+            background-color: transparent;
+            color: $primary;
+            cursor: pointer;
+        }
     }
     &__options {
         cursor: pointer;
@@ -43,40 +78,46 @@
     &__is-paused {
         margin-left: 10px;
     }
+
+    &__add {
+        margin-bottom: 20px;
+        color: $text;
+    }
+
+    &__title {
+        font-weight: 900;
+        padding-bottom: 10px;
+
+        &--placeholder {
+            color: $text;
+        }
+    }
+
+    &__description {
+        padding-bottom: 20px;
+    }
+
+    &__modal-content-container {
+        height: 150px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
     &__modal-prompt {
-        max-width: 300px;
+        max-width: 230px;
+        margin: 0 auto;
         text-align: center;
-        margin: 0;
     }
     &__modal-button-container {
-        width: 300px;
-        margin-top: 16px;
         display: flex;
         justify-content: space-around;
-        align-items: center; 
+        margin-top: 16px;
     }
     &__modal-button {
-        font-size: 16px;
-        height: 50px;
-        width: 125px;
-        background-color: white;
-        outline: none;
-        border: none;
-        border-radius: 5px;
-        color:#1457DB;
-        cursor: pointer;
-        &:hover {
-          font-weight: bold;
-        }
-        &--blue {
-            background-color: #1457DB;
-            color: white;
-            cursor: pointer;
-            &:hover {
-              font-weight: bold;
-            }
-        }
-    }   
+
+    }
+
     &__todo {
       display: flex;
       justify-content: space-between;

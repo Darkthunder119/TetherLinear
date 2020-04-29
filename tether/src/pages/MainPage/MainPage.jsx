@@ -136,7 +136,7 @@ class MainPage extends React.Component{
 
   render(){
     if (this.state.user.id){
-      const { jiraTasks, personalgoals } = this.state.user.data;
+      const { jiraTasks, personalgoals, currentTask } = this.state.user.data;
       
       return <> 
         <SideNav />
@@ -152,6 +152,8 @@ class MainPage extends React.Component{
           jiraTasks={jiraTasks ? jiraTasks : []} 
           personalGoals={personalgoals ? personalgoals : []}
           populateJiraTasks={this.populateJiraTasks} 
+          currUser={this.state.user.id}
+          currTask={currentTask ? currentTask : null}
         />
       </>
     } else {
