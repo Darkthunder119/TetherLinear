@@ -13,6 +13,13 @@
         justify-content: space-around;
         align-items: center;
     }
+    &__nav-button {
+        font-size: unset;
+        border: none;
+        outline: none;
+        background-color: unset;
+        cursor: pointer;
+    }
     &__nav-link {
         color: black;
         opacity: 0.9;
