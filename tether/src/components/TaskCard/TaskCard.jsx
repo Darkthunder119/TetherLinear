@@ -114,7 +114,7 @@ export default class TaskCard extends Component {
             contentLabel="Submit"
         >   <div className="task__modal-content-container">
                 <h3 className="task__modal-prompt">Are you sure?</h3>
-                <h4 className="task__modal-prompt">This will mark <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
+                <h4 className="task__modal-prompt">This will mark your <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
                 <div className="task__modal-button-container">
                     <button className="task__button" onClick={this.handleSubmit}>Submit Complete</button>
                     <button className="task__button task__button--cancel" onClick={this.handleModalChange}>Cancel</button>
