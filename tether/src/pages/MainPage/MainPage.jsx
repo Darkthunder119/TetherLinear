@@ -23,6 +23,7 @@ class MainPage extends React.Component {
       modalIsOpen: false,
       usersList: [],
       jiraList: [],
+      jiraQueue: [],
     };
   }
   mounted = false;
@@ -145,13 +146,15 @@ class MainPage extends React.Component {
       this.retrieveUsersFromDatabase(this.state.user);
     } else {
       if (this.state.user.data && this.state.user.data.currentTask) {
-        let time = this.state.user.data.currentTask.timestamp/1000;
+        let time = this.state.user.data.currentTask.timestamp / 1000;
         clearInterval(this.timerId);
-        this.timerId = setInterval(()=>{
-          if ((Math.floor(((Date.now()/1000)-time) % 60) === 0)) {
-            alert('You hardworker! Take a break and check out your personal weekly tasks!')
+        this.timerId = setInterval(() => {
+          if (Math.floor((Date.now() / 1000 - time) % 60) === 0) {
+            alert(
+              "You hardworker! Take a break and check out your personal weekly tasks!"
+            );
           }
-        },1000)
+        }, 1000);
       }
     }
   }
@@ -161,31 +164,29 @@ class MainPage extends React.Component {
     clearInterval(this.timerId);
   }
 
-  render(){
-    if (this.state.user.id){
+  render() {
+    if (this.state.user.id) {
       const { jiraTasks, personalgoals, currentTask } = this.state.user.data;
-      
+
       return (
-      <> 
-        <SideNav />
-        <HeaderNav
-          openModal={this.openModal}
-        />
-        <CreateModal 
-          isOpen={this.state.modalIsOpen}
-          closeModal={this.closeModal}
-          currentUser={this.state.user}
-        />
-        <Body 
-          jiraTasks={jiraTasks ? jiraTasks : []} 
-          jiraList={this.state.jiraList}
-          personalGoals={personalgoals ? personalgoals : []}
-          populateJiraTasks={this.populateJiraTasks} 
-          currUser={this.state.user.id}
-          currTask={currentTask ? currentTask : null}
-          openModal={this.openModal}
-        />
-      </> 
+        <>
+          <SideNav />
+          <HeaderNav openModal={this.openModal} />
+          <CreateModal
+            isOpen={this.state.modalIsOpen}
+            closeModal={this.closeModal}
+            currentUser={this.state.user}
+          />
+          <Body
+            jiraTasks={jiraTasks ? jiraTasks : []}
+            jiraList={this.state.jiraList}
+            personalGoals={personalgoals ? personalgoals : []}
+            populateJiraTasks={this.populateJiraTasks}
+            currUser={this.state.user.id}
+            currTask={currentTask ? currentTask : null}
+            openModal={this.openModal}
+          />
+        </>
       );
     } else {
       return <>Loading</>;

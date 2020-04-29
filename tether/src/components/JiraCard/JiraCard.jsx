@@ -68,7 +68,7 @@ const JiraCard = (props) => {
       name: props.name,
       assignee: props.assignee,
       priority: props.priority,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
     firebase
       .database()
