@@ -8,8 +8,10 @@ export default class Body extends Component {
     return (
       <>
         <main className="body">
-          <section className="body__tasks">ACTIVE TASKS SECTION</section>
-          <section className="body__backlog">BACKLOG SECTION</section>
+          <section></section>
+          <section className="body__tasks">
+            <TasksList jiraTasks={this.props.jiraTasks} />{" "}
+          </section>
           <button
             className="temporaryButton"
             onClick={this.props.populateJiraTasks}
