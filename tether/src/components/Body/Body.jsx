@@ -19,12 +19,14 @@ export default class Body extends Component {
         <main className="body">
           <section></section>
           <section className="body__tasks">{tasks}</section>
-          <button
+          {/*
+ <button
             className="temporaryButton"
             onClick={this.props.populateJiraTasks}
           >
             CLICK ME TO POPULATE DATABASE AND REFRESH
           </button>
+          */}
         </main>
       </>
     );

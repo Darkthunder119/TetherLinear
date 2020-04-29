@@ -12,7 +12,6 @@ const TaskCard = (props) => {
   let result;
   let textColor;
 
-  /*
   const priorityFn = (item) => {
     if (item === "Highest") {
       result = "Highest";
@@ -57,41 +56,34 @@ const TaskCard = (props) => {
       arrow = <FontAwesomeIcon icon={faArrowDown} />;
     }
   };
-  priorityFn(priority);
-  arrowFn(priority);
-*/
+  priorityFn(props.priority);
+  arrowFn(props.priority);
   console.log(props);
-  tasks.forEach((arr, index) => {
-    arr[index].forEach((item, index) => {
-      return (
-        <>
-          <div className="task__card">
-            <div className="task__top">
-              <div className="task__priority">
-                <span className={`task__task__priority-arrow ${textColor}`}>
-                  {
-                    //arrow
-                  }
-                </span>{" "}
-                <span className={`task__priority-text ${textColor}`}>
-                  {item[4]}
-                </span>
-              </div>
 
-              <div className="task__kebab">
-                <FontAwesomeIcon icon={faEllipsisV} />
-              </div>
-            </div>
-            <div className="task__bottom">
-              <h2 className="task__assignee">{item[5]}</h2>
-              <h2 className="task__name">{item[3]}</h2>
-              <h4 className="task__id">#{item[0]}</h4>
-            </div>
-          </div>
-        </>
-      );
-    });
-  });
+  return (
+    <div className="task__card">
+      <div className="task__top">
+        <div className="task__priority">
+          <span className={`task__task__priority-arrow ${textColor}`}>
+            {arrow}
+          </span>{" "}
+          <span className={`task__priority-text ${textColor}`}>
+            {props.priority}
+          </span>
+        </div>
+        <div className="task__kebab">
+          <FontAwesomeIcon icon={faEllipsisV} />
+        </div>
+      </div>
+      <div className="task__bottom">
+        <h2 className="task__name">{props.name}</h2>
+
+        <h3 className="task__assignee">{props.assignee}</h3>
+
+        <h4 className="task__id">#{props.id}</h4>
+      </div>
+    </div>
+  );
 };
 export default TaskCard;
 

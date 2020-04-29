@@ -25,9 +25,20 @@ export default class TasksList extends Component {
 
     return (
       <>
-        <h1>My Tasks ({this.props.jiraList})</h1>
+        <h1>Tasks ({this.props.jiraList.length})</h1>
         <div className="tasks__container">
-          <TaskCard tasks={this.props.jiraList} />
+          {this.props.jiraList
+            .filter((val) => val[2] != "Done")
+            .map((item) => {
+              return (
+                <TaskCard
+                  id={item[0]}
+                  name={item[3]}
+                  assignee={item[5]}
+                  priority={item[4]}
+                />
+              );
+            })}
         </div>
       </>
     );
