@@ -2,6 +2,7 @@ import React from 'react';
 import SideNav from '../../components/SideNav/SideNav';
 import Body from "../../components/Body/Body";
 import HeaderNav from '../../components/HeaderNav/HeaderNav';
+import CreateModal from "../../components/CreateModal/CreateModal";
 import "./MainPage.scss";
 import firebase from "firebase/app";
 import 'firebase/firebase-auth';
@@ -13,10 +14,20 @@ class MainPage extends React.Component{
     this.users = firebase.database().ref('users');
     this.state = {
       user: "",
+      modalIsOpen: false,
       usersList: [],
     };
   }
   mounted = false;
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = (e) => {
+    e.preventDefault();
+    this.setState({ modalIsOpen: false });
+  };
 
   /*=====================================================
   =  DATABASE SPECIFIC FUNCTIONS (ONLY FOR POPULATIONS) = 
@@ -35,26 +46,45 @@ class MainPage extends React.Component{
     })
   }
 
+  createNewUser = (email) => {
+    let name = email.split('@')[0];
+    console.log(name);
+    this.users.push({
+      name,
+      email,
+      currentTask: '',
+      jiraTasks: []
+    })
+  }
+
+
   /*=====================================================
   =         DATABASE SPECIFIC FUNCTIONS END             = 
   ======================================================*/
 
-
   retrieveUsersFromDatabase = (currentUser) => {
     this.users.once('value', snap=>{
       let user = Object.entries(snap.val()).find(user=>user[1].email===currentUser);
-      let currUser = {
-        id: user[0],
-        data: user[1]
+      let currUser = {};
+      if (user){
+         currUser = {
+          id: user[0],
+          data: user[1]
+        }
+        let jiraTasks = currUser.data.jiraTasks;
+        if (jiraTasks){
+          let jiraKeys = Object.keys(jiraTasks);
+          let jiraValues = Object.values(jiraTasks);
+          jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
+          currUser.data.jiraTasks = jiraTasks; 
+        }
+      } else {
+        // new user route
+        currUser = currentUser;
+        this.createNewUser(currentUser);
       }
 
       // this block is to convert jiraTasks Object into an array instead
-      let jiraTasks = currUser.data.jiraTasks;
-      let jiraKeys = Object.keys(jiraTasks);
-      let jiraValues = Object.values(jiraTasks);
-      jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
-      currUser.data.jiraTasks = jiraTasks; 
-  
       this.setState({
         user: currUser,
         usersList: snap.val()
@@ -62,7 +92,6 @@ class MainPage extends React.Component{
     })
   }
   
-
   authChange = () => {
     this.auth.onAuthStateChanged((cred) => {
       if (this.mounted) {
@@ -85,10 +114,10 @@ class MainPage extends React.Component{
     if (!this.state.user && this.mounted) {
       authChange();
     }
-    // THIS IS TO POPULATE THE DAMN TABLE
-    // if (this.state.user.id){
-    //   this.populateJiraTasks();
-    // }
+
+    if (!this.state.user.id){
+      this.retrieveUsersFromDatabase(this.state.user)
+    }
   }
 
   componentWillUnmount(){
@@ -100,8 +129,15 @@ class MainPage extends React.Component{
       const { jiraTasks } = this.state.user.data;
       return <> 
         <SideNav />
-        <HeaderNav />
-        <Body jiraTasks={jiraTasks}/>
+        <HeaderNav
+          openModal={this.openModal}
+        />
+        <CreateModal 
+          isOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          currentUser={this.state.user}
+        />
+        <Body jiraTasks={jiraTasks} populateJiraTasks={this.populateJiraTasks}/>
       </>
     } else {
       return <>Loading</>
