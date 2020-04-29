@@ -42,37 +42,18 @@ export default class TaskCard extends Component {
     }
     
     handleSubmit(e) {
-
-    axios.get('https://bstn-jira-integration.herokuapp.com/jira/status?id=WP-2')
-    .then(res => {
-        console.log(res.config);
-        
-        //res.config: {
-        //    url,
-        //    method,
-        //    headers: {
-        //        Accept,
-        //        Authorization,
-        //        User-Agent
-        //    },
-        //    transformRequest,
-        //    transformResponse,
-        //    timeout,
-        //    xsrfCookieName,
-        //    xsrfHeaderName,
-        //    maxContentLength
-        //}
+    const { ticketNumber, assignee, name } = this.props.currTask;
+    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
+    .then(res => { 
+      firebase.database()
+      .ref("users/"+this.props.currUser)
+      .child("currentTask")
+      .remove()
+      
       })
-    this.setState(state => ({
-    isModalOpen: !state.isModalOpen
+      this.setState(state => ({
+      isModalOpen: !state.isModalOpen
     }));
-
-    firebase.database()
-        .ref("users/"+this.props.currUser)
-        .child("currentTask")
-        .remove()
-        //.update({assinge: "john"})
-
     }
 
     handleModalChange() {
