@@ -4,11 +4,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: white;
     border: 1px solid black;
     border-radius: 15px;
     padding: 24px;
+    &__personal { justify-content: flex-start }
     &__section {
         display: flex;
         justify-content: space-between;
@@ -41,5 +42,9 @@
     }
     &__is-paused {
         margin-left: 10px;
+    }
+    &__todo {
+      display: flex;
+      justify-content: space-between;
     }
 }
