@@ -1,0 +1,45 @@
+.task {
+    width: 100%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 24px;
+    &__section {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        &:nth-child(2) {
+            flex-direction: column;
+        }
+    }
+    &__button {
+        cursor: pointer;
+        background-color: #1457DB;
+        color: white;
+        height: 30px;
+        border-radius: 5px;
+    }
+    &__options {
+        cursor: pointer;
+        transform: rotate(270deg);
+        border: none;
+        font-size: 2rem;
+    }
+    &__add-button {
+        cursor: pointer;
+        border: none;
+        font-size: 50px;
+    }
+    &__toggle-container {
+        display: flex;
+        align-items: center;
+    }
+    &__is-paused {
+        margin-left: 10px;
+    }
+}

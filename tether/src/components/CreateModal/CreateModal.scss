@@ -1,0 +1,114 @@
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 750px;
+  height: 70vh;
+  padding: 16px 40px;
+
+  &__heading {
+    font-size: 32px;
+    margin: 20px 0;
+  }
+  &__subheading-wrap {
+    display: flex;
+  }
+  &__subheading {
+    font-size: 18px;
+    font-weight: 400;
+    color: grey;
+    margin: 0;
+    &--second {
+      margin-left: 428px;
+    }
+  }
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 16px 0;
+  }
+  &__field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    font-size: 16px;
+    width: 450px;
+    height: 45px;
+    padding-top: 2px;
+    padding-left: 18px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    background: #FAFAFA;
+    resize: none;
+
+    &::placeholder{
+      color: black;
+    }
+    &:focus{
+      outline: none;
+    }
+    &--small {
+      align-self: center;
+      width: 60px;
+    }
+  }
+  &__remove-btn {
+    font-size: 14px;
+    width: 75px;
+    height: 45px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid lightgrey;
+    &:hover {
+      font-weight: bold;
+      border: 1px solid darkgrey;
+      cursor: pointer;
+    }
+  }
+  &__add-btn {
+    font-size: 24px;
+    width: 30px;
+    height: 30px;
+    color: white;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    margin: 10px 0;
+    background-color: #1457DB;
+  }
+  &__buttonwrap {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  &__button {
+    font-size: 16px;
+    height: 50px;
+    width: 125px;
+    background-color: white;
+    margin-bottom: 16px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color:#1457DB;
+    cursor: pointer;
+    &:hover {
+      font-weight: bold;
+    }
+
+    &--blue {
+      background-color: #1457DB;
+      color: white;
+      cursor: pointer;
+      &:hover {
+        font-weight: bold;
+      }
+    }
+  }
+}

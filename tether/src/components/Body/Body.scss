@@ -6,9 +6,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-}
 
-.body {
   &__tasks {
     border: 1px solid black;
     height: 200px;
@@ -19,4 +17,14 @@
     height: 200px;
     width: 100vh;
   }
+  &__taskcards {
+    width: 100%;
+    display: flex;
+
+  }
+}
+
+// THIS IS TO BE REMOVED LATER ITS TEMPORARY
+.temporaryButton {
+  padding: 20px;
 }
