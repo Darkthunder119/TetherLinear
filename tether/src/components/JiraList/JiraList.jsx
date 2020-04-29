@@ -5,18 +5,16 @@ import "./JiraList.scss";
 export default class JiraList extends Component {
   render() {
     console.log("JIRALIST FROM JRIA LIST", this.props.jiraList);
-    console.log("THIS IS THE CURR TASK", this.props.currTask);
     return (
       <>
-        {this.props.currTask != undefined && (
+        { 
           <>
             <h1>
               Tasks (
               {
                 this.props.jiraList.filter(
                   (val) =>
-                    val[2] != "Done" &&
-                    val[0] !== this.props.currTask.ticketNumber
+                    val[2] != "Done"
                 ).length}
               )
             </h1>
@@ -24,8 +22,7 @@ export default class JiraList extends Component {
               {this.props.jiraList
                 .filter(
                   (val) =>
-                    val[2] != "Done" &&
-                    val[0] !== this.props.currTask.ticketNumber
+                    val[2] != "Done" 
                 )
                 .map((item) => {
                   return (
@@ -40,7 +37,7 @@ export default class JiraList extends Component {
                 })}
             </div>
           </>
-        )}
+        }
       </>
     );
   }

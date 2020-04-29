@@ -51,6 +51,11 @@ export default class TaskCard extends Component {
     .then(res=>console.log('done!'))
     .catch(err=>console.log(err));
 
+    axios.post(`https://team15hackathon.atlassian.net/rest/api/3/issue/${ticketNumber}/transitions` , {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}}, {  "transitions": {
+        "id": "41"
+      }
+    })
+
     this.setState(state => ({
       isModalOpen: !state.isModalOpen
     }));

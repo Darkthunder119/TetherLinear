@@ -8,11 +8,11 @@ import firebase from "firebase/app";
 import "firebase/firebase-auth";
 import "firebase/firebase-database";
 import axios from "axios";
-import { createPortal } from "react-dom";
 
 const API_URL = "https://bstn-jira-integration.herokuapp.com";
 
 class MainPage extends React.Component {
+  debugger;
   constructor(props) {
     super(props);
     this.auth = firebase.auth();
@@ -130,10 +130,18 @@ class MainPage extends React.Component {
   componentDidMount() {
     this.mounted = true;
     this.authChange();
-    axios.get(`${API_URL}/jira/issues`).then((response) => {
-      // console.log(response.data);
-      this.setState({ jiraList: response.data });
-    });
+    // axios.get(`${API_URL}/jira/issues`).then((response) => {
+    //   // console.log(response.data);
+    //   this.setState({ jiraList: response.data });
+    // });
+
+    axios.get('https://cors-anywhere.herokuapp.com/https://team15hackathon.atlassian.net/rest/api/3/search?jql=project=WP', {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}})
+    .then(res=> {
+      let list = res.data.issues.map(val=>[val.key, val.fields.project.name, val.fields.status.name, val.fields.summary, val.fields.priority.name, val.fields.assignee.displayName] )
+      this.setState({jiraList: list })
+
+    })
+    .catch(err=>console.log('fuck'));
   }
   componentDidUpdate() {
     const { authChange } = this;
