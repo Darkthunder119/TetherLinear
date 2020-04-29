@@ -81,17 +81,17 @@ export default class TaskCard extends Component {
     }
 
   renderJiraCard = () => {
-    const { ticket, title, description } = this.props;
+    const { ticket, title, description, currTask } = this.props;
     return (
       <div className="task">
         <div className="task__section">
-          <h4 className="task__ticket">{ticket}</h4>
+          <h4 className="task__ticket">{currTask.ticketNumber}</h4>
           <span className="task__options">...</span>
         </div>
 
         <div className="task__section">
-          <h2 className="task__title">{title}</h2>
-          <p className="task__description">{description}</p>
+          <h2 className="task__title">{currTask.assignee}</h2>
+          <p className="task__description">{currTask.name}</p>
         </div>
 
       <div className="task__section">
@@ -114,7 +114,7 @@ export default class TaskCard extends Component {
             contentLabel="Submit"
         >   <div className="task__modal-content-container">
                 <h3 className="task__modal-prompt">Are you sure?</h3>
-                <h4 className="task__modal-prompt">This will mark <strong>{ticket}</strong> Jira ticket as completed.</h4>
+                <h4 className="task__modal-prompt">This will mark <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
                 <div className="task__modal-button-container">
                     <button className="task__button" onClick={this.handleSubmit}>Submit Complete</button>
                     <button className="task__button task__button--cancel" onClick={this.handleModalChange}>Cancel</button>

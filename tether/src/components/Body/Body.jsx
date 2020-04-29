@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import "./Body.scss";
 import TaskCard from "../TaskCard/TaskCard";
+import JiraList from "../JiraList/JiraList";
 
 export default class Body extends Component {
   render() {
-    const { personalGoals, jiraTasks, currUser, currTask } = this.props;
+    const { personalGoals, jiraTasks, currUser, currTask, jiraList } = this.props;
     console.log(jiraTasks);
-    console.log(personalGoals)
+    console.log(personalGoals);
     return (
       <>
         <main className="body">
-        <h1 className="body__header">Focus</h1>
+          <h1 className="body__header">Focus</h1>
           <section className="body__taskcards">
             <TaskCard 
             
@@ -21,16 +22,11 @@ export default class Body extends Component {
               title="UI For Components" 
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
             />
-            <TaskCard 
-              type="personal"
-              data={personalGoals}
-            />
+            <TaskCard type="personal" data={personalGoals} />
           </section>
-          <h1 className="body__header">My Tasks</h1>
-          <section className="body__tasks">ACTIVE TASKS SECTION</section>
-          <section className="body__backlog">BACKLOG SECTION</section>
-          <button className="temporaryButton" 
-            onClick={this.props.populateJiraTasks}>CLICK ME TO POPULATE DATABASE AND REFRESH</button>
+          <section className="body__tasks">
+            <JiraList jiraList={jiraList} currUser={currUser} />
+          </section>
         </main>
       </>
     );
