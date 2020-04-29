@@ -1,24 +1,55 @@
 import React, {Component} from 'react'
 import './TaskCard.scss'
 import Switch from "react-switch";
+import Modal from "react-modal";
+
+const modalStyles = {
+    content: {
+      position: "absolute",
+      padding: "0",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      padding: "16px"
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)"
+    }
+  };
 
 export default class TaskCard extends Component {
     constructor() {
         super();
         this.state = { 
-            checked: false
+            checked: false,
+            isModalOpen: false,
         };
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleModalChange = this.handleModalChange.bind(this);
     }
      
         handleChange(checked) {
         this.setState({ checked });
         }
+        
+        handleSubmit(e) {
+        this.setState(state => ({
+            isModalOpen: !state.isModalOpen
+            }));
+        }
 
-        //handleClick(checked) {
-        //}
+        handleModalChange() {
+        this.setState(state => ({
+            isModalOpen: !state.isModalOpen
+            }));  
+        }
 
-    render() {
+    render() {  
+
         const { ticket, title, description } = this.props;
 
     return (
@@ -46,8 +77,25 @@ export default class TaskCard extends Component {
                     />
                     <span className="task__is-paused">{this.state.checked && "paused"}</span>
                     </div>
-                    <button className="task__button" onClick={this.onClick}>Mark as Complete</button>
+                    <button className="task__button" onClick={this.handleModalChange}>Mark as Complete</button>
                 </div>
+
+                {this.state.isModalOpen &&
+
+                    <Modal 
+                        isOpen={this.state.isModalOpen} 
+                        style={modalStyles}
+                        contentLabel="Submit"
+                    >
+                        <h4 className="task__modal-prompt">Are you sure?</h4>
+                        <div className="task__modal-button-container">
+                            <button className="task__modal-button task__modal-button--blue" onClick={this.handleSubmit}>Submit</button>
+                            <button className="task__modal-button" onClick={this.handleModalChange}>Cancel</button>
+                        </div>
+                    </Modal>
+
+                }
+
             </div>
         
         :   <div className="task">
