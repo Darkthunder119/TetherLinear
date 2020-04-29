@@ -42,23 +42,20 @@ export default class TaskCard extends Component {
     }
     
     handleSubmit(e) {
-      console.log(this.props.currTask.ticketNumber)
-    axios.post(`https://bstn-jira-integration.herokuapp.com/jira/status?id=${this.props.currTask.ticketNumber}`)
-    .then(res => {
-        console.log(res.config);
-    }).catch(res => {
-        console.log(res)
-    })
-    this.setState(state => ({
-    isModalOpen: !state.isModalOpen
+    const { ticketNumber, assignee } = this.props.currTask;
+    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
+    .then(res => { console.log('task done')})
+      this.setState(state => ({
+      isModalOpen: !state.isModalOpen
     }));
 
     firebase.database()
-        .ref("users/"+this.props.currUser)
-        .child("currentTask")
-        .remove()
+      .ref("users/"+this.props.currUser)
+      .child("currentTask")
+      .remove()
     }
 
+    
     handleModalChange() {
     this.setState(state => ({
         isModalOpen: !state.isModalOpen
