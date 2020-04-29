@@ -5,17 +5,19 @@ import TasksList from "../TasksList/TasksList";
 export default class Body extends Component {
   render() {
     console.log(this.props.jiraTasks);
-    if (this.props.jiraTasks.length > 0) {
-      return (
-        <>
-          <main className="body">
-            <section></section>
-            <section className="body__tasks">
-              <TasksList jiraTasks={this.jiraTasks} />{" "}
-            </section>
-          </main>
-        </>
-      );
-    }
+    return (
+      <>
+        <main className="body">
+          <section className="body__tasks">ACTIVE TASKS SECTION</section>
+          <section className="body__backlog">BACKLOG SECTION</section>
+          <button
+            className="temporaryButton"
+            onClick={this.props.populateJiraTasks}
+          >
+            CLICK ME TO POPULATE DATABASE AND REFRESH
+          </button>
+        </main>
+      </>
+    );
   }
 }

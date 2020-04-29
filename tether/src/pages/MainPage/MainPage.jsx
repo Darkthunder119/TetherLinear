@@ -35,26 +35,45 @@ class MainPage extends React.Component{
     })
   }
 
+  createNewUser = (email) => {
+    let name = email.split('@')[0];
+    console.log(name);
+    this.users.push({
+      name,
+      email,
+      currentTask: '',
+      jiraTasks: []
+    })
+  }
+
+
   /*=====================================================
   =         DATABASE SPECIFIC FUNCTIONS END             = 
   ======================================================*/
 
-
   retrieveUsersFromDatabase = (currentUser) => {
     this.users.once('value', snap=>{
       let user = Object.entries(snap.val()).find(user=>user[1].email===currentUser);
-      let currUser = {
-        id: user[0],
-        data: user[1]
+      let currUser = {};
+      if (user){
+         currUser = {
+          id: user[0],
+          data: user[1]
+        }
+        let jiraTasks = currUser.data.jiraTasks;
+        if (jiraTasks){
+          let jiraKeys = Object.keys(jiraTasks);
+          let jiraValues = Object.values(jiraTasks);
+          jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
+          currUser.data.jiraTasks = jiraTasks; 
+        }
+      } else {
+        // new user route
+        currUser = currentUser;
+        this.createNewUser(currentUser);
       }
 
       // this block is to convert jiraTasks Object into an array instead
-      let jiraTasks = currUser.data.jiraTasks;
-      let jiraKeys = Object.keys(jiraTasks);
-      let jiraValues = Object.values(jiraTasks);
-      jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
-      currUser.data.jiraTasks = jiraTasks; 
-  
       this.setState({
         user: currUser,
         usersList: snap.val()
@@ -62,7 +81,6 @@ class MainPage extends React.Component{
     })
   }
   
-
   authChange = () => {
     this.auth.onAuthStateChanged((cred) => {
       if (this.mounted) {
@@ -85,10 +103,10 @@ class MainPage extends React.Component{
     if (!this.state.user && this.mounted) {
       authChange();
     }
-    // THIS IS TO POPULATE THE DAMN TABLE
-    // if (this.state.user.id){
-    //   this.populateJiraTasks();
-    // }
+
+    if (!this.state.user.id){
+      this.retrieveUsersFromDatabase(this.state.user)
+    }
   }
 
   componentWillUnmount(){
@@ -101,7 +119,7 @@ class MainPage extends React.Component{
       return <> 
         <SideNav />
         <HeaderNav />
-        <Body jiraTasks={jiraTasks}/>
+        <Body jiraTasks={jiraTasks} populateJiraTasks={this.populateJiraTasks}/>
       </>
     } else {
       return <>Loading</>
