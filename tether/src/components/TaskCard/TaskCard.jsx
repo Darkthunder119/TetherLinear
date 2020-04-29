@@ -3,32 +3,95 @@ import './TaskCard.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Switch from "react-switch";
+import Modal from "react-modal";
+import axios from 'axios'
+import firebase from "firebase/app";
+import 'firebase/firebase-database';
+
+const modalStyles = {
+    content: {
+      position: "absolute",
+      padding: "16px",
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)"
+    },
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.6)"
+    }
+  };
 
 export default class TaskCard extends Component {
-  constructor() {
-    super();
-    this.state = { 
-      checked: false
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+    constructor() {
+        super();
+        this.state = { 
+            checked: false,
+            isModalOpen: false
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleModalChange = this.handleModalChange.bind(this);
+    }
      
-  handleChange(checked) {
-  this.setState({ checked });
-  }
+    handleChange(checked) {
+    this.setState({ checked });
+    }
+    
+    handleSubmit(e) {
+
+    axios.get('https://bstn-jira-integration.herokuapp.com/jira/status?id=WP-2')
+    .then(res => {
+        console.log(res.config);
+        
+        //res.config: {
+        //    url,
+        //    method,
+        //    headers: {
+        //        Accept,
+        //        Authorization,
+        //        User-Agent
+        //    },
+        //    transformRequest,
+        //    transformResponse,
+        //    timeout,
+        //    xsrfCookieName,
+        //    xsrfHeaderName,
+        //    maxContentLength
+        //}
+      })
+    this.setState(state => ({
+    isModalOpen: !state.isModalOpen
+    }));
+
+    firebase.database()
+        .ref("users/"+this.props.currUser)
+        .child("currentTask")
+        .remove()
+        //.update({assinge: "john"})
+
+    }
+
+    handleModalChange() {
+    this.setState(state => ({
+        isModalOpen: !state.isModalOpen
+        }));  
+    }
 
   renderJiraCard = () => {
-    const { ticket, title, description } = this.props;
+    const { ticket, title, description, currTask } = this.props;
     return (
       <div className="task">
         <div className="task__section">
-          <h4 className="task__ticket">{ticket}</h4>
+          <h4 className="task__ticket">{currTask.ticketNumber}</h4>
           <span className="task__options">...</span>
         </div>
 
         <div className="task__section">
-          <h2 className="task__title">{title}</h2>
-          <p className="task__description">{description}</p>
+          <h2 className="task__title">{currTask.assignee}</h2>
+          <p className="task__description">{currTask.name}</p>
         </div>
 
       <div className="task__section">
@@ -41,7 +104,25 @@ export default class TaskCard extends Component {
           />
           <span className="task__is-paused">{this.state.checked && "paused"}</span>
         </div>
-        <button className="task__button" onClick={this.onClick}>Mark as Complete</button>
+        <button className="task__button" onClick={this.handleModalChange}>Mark as Complete</button>
+
+        {this.state.isModalOpen &&
+
+        <Modal 
+            isOpen={this.state.isModalOpen} 
+            style={modalStyles}
+            contentLabel="Submit"
+        >   <div className="task__modal-content-container">
+                <h3 className="task__modal-prompt">Are you sure?</h3>
+                <h4 className="task__modal-prompt">This will mark <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
+                <div className="task__modal-button-container">
+                    <button className="task__button" onClick={this.handleSubmit}>Submit Complete</button>
+                    <button className="task__button task__button--cancel" onClick={this.handleModalChange}>Cancel</button>
+                </div>
+            </div>
+        </Modal>
+
+        }
       </div>
     </div>
     )
@@ -77,10 +158,10 @@ renderPersonalCard = () => {
   )
 }
   renderCard = () => {
-    const { type, data } = this.props;
+    const { type, data, currTask } = this.props;
     return (
       <>
-        {data.length
+        {(data && data.length) || currTask
         ? type === 'jira'
           ? this.renderJiraCard()
           : this.renderPersonalCard()
@@ -96,6 +177,7 @@ renderPersonalCard = () => {
   )}
 
   render() {
+      console.log(this.props.currTask)
     return (
       this.renderCard() 
     );
