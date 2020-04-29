@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import './TaskCard.scss'
 import Switch from "react-switch";
 import Modal from "react-modal";
+import axios from 'axios'
 
 const modalStyles = {
     content: {
@@ -40,6 +41,25 @@ export default class TaskCard extends Component {
     this.setState(state => ({
         isModalOpen: !state.isModalOpen
         }));
+    axios.get('https://bstn-jira-integration.herokuapp.com/jira/status?id=WP-2')
+    .then(res => {
+        console.log(res.config);
+        //res.config: {
+        //    url,
+        //    method,
+        //    headers: {
+        //        Accept,
+        //        Authorization,
+        //        User-Agent
+        //    },
+        //    transformRequest,
+        //    transformResponse,
+        //    timeout,
+        //    xsrfCookieName,
+        //    xsrfHeaderName,
+        //    maxContentLength
+        //}
+      })
     }
 
     handleModalChange() {
