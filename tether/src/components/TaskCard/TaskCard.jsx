@@ -64,7 +64,7 @@ renderPersonalCard = () => {
   return (
     <div className="task task__personal">
       <div className="task__section">
-        <span className="task__ticket">Weekly Goals</span>
+        <h4 className="task__ticket task__ticket--personal">Weekly Goals</h4>
         <span className="task__options">...</span>
       </div>
 
