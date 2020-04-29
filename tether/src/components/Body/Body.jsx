@@ -4,13 +4,16 @@ import TasksList from "../TasksList/TasksList";
 
 export default class Body extends Component {
   render() {
-    console.log(this.props.jiraTasks);
-    let tasks = "";
+    console.log(this.props.jiraList);
+    let tasks = <TasksList jiraList={this.props.jiraList} />;
+    /*
+   
     if (this.props.jiraTasks !== undefined) {
       tasks = <TasksList jiraTasks={this.props.jiraTasks} />;
     } else {
       tasks = <div>NO DATA, click BUTTON</div>;
     }
+    */
     return (
       <>
         <main className="body">

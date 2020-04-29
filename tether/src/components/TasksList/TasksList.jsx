@@ -5,53 +5,34 @@ import "./TasksList.scss";
 export default class TasksList extends Component {
   // jiraTasks = this.props.jiraTasks;
   /*
-  tasks = this.props.jiraTasks.map((obj) => {
-    const taskInfo = {
-      id: obj.id,
-      name: obj.value.name,
-      priority: obj.value.priority,
-      isCompleted: obj.value.isCompleted,
-      isInProgress: obj.value.isInProgress,
-      number: obj.value.ticketNumber,
-      details: obj.value.details,
-    };
-    return taskInfo;
+ tasks = this.props.jiraList.map((arr, index) => {
+    arr.map((item) => {
+      const taskInfo = {
+        id: index,
+        name: arr[3],
+        priority: arr[4],
+        number: arr[0],
+        assignee: arr[5],
+      };
+      return taskInfo;
+    });
+    return arr;
   });
-  */
-  render() {
-    console.log(this.props.jiraTasks);
-    // if (this.props.jiraTasks !== undefined) {
-    // }
+ */
 
-    //   console.log(this.props.jiraTasks);
+  render() {
+    console.log(this.props.jiraList);
+
+    return (
+      <>
+        <h1>My Tasks ({this.props.jiraList})</h1>
+        <div className="tasks__container">
+          <TaskCard tasks={this.props.jiraList} />
+        </div>
+      </>
+    );
+
     //   this.props.jiraTasks.map((obj) => <TaskCard {...obj} key={obj.id} />);
     //if (this.props.jiraTasks)
-    if (this.props.jiraTasks !== undefined) {
-      let tasks =
-        this.props.jiraTasks.length > 0
-          ? this.props.jiraTasks.map((obj) => {
-              const taskInfo = {
-                id: obj.id,
-                name: obj.value.name,
-                priority: obj.value.priority,
-                isCompleted: obj.value.isCompleted,
-                isInProgress: obj.value.isInProgress,
-                number: obj.value.ticketNumber,
-                details: obj.value.details,
-              };
-              return taskInfo;
-            })
-          : null;
-    }
-    return <></>;
   }
 }
-
-/*
- <h1>My Tasks ({this.tasks.length})</h1>
-        <div className="tasks__container">
-          {this.tasks.map((obj) => (
-            <TaskCard {...obj} key={obj.id} />
-          ))}
-        </div>
-        */
