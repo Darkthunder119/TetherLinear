@@ -8,6 +8,7 @@ import {
 import "./JiraCard.scss";
 import "firebase/firebase-database";
 import firebase from "firebase/app";
+import axios from "axios";
 
 const JiraCard = (props) => {
   let result;
@@ -74,6 +75,10 @@ const JiraCard = (props) => {
       .ref("users/" + props.currUser)
       .child("currentTask")
       .update(objTask);
+
+    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/user?message=Currently%20working%20on%20${props.id}`)
+      .then(res=>console.log('slack message sent'))
+      .catch(err=>console.log(err));
   };
   return (
     <div
