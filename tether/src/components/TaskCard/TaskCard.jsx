@@ -43,15 +43,15 @@ export default class TaskCard extends Component {
     
     handleSubmit(e) {
     const { ticketNumber, assignee } = this.props.currTask;
-    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
     .then(res=>console.log('done!'))
     .catch(err=>console.log(err));
 
-    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/user?message=Looking%20for%20things%20to%20do`)
+    axios.get(`https://cors-anywhere.herokuapp.com/https://bstn-jira-integration.herokuapp.com/slack/user?message=Looking%20for%20things%20to%20do`)
     .then(res=>console.log('done!'))
     .catch(err=>console.log(err));
 
-    axios.post(`https://team15hackathon.atlassian.net/rest/api/3/issue/${ticketNumber}/transitions` , {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}}, {  "transitions": {
+    axios.post(`https://cors-anywhere.herokuapp.com/https://team15hackathon.atlassian.net/rest/api/3/issue/${ticketNumber}/transitions` , {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}}, {  "transitions": {
         "id": "41"
       }
     })
