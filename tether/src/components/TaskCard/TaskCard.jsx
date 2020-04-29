@@ -44,8 +44,14 @@ export default class TaskCard extends Component {
     handleSubmit(e) {
     const { ticketNumber, assignee } = this.props.currTask;
     axios.get(`https://bstn-jira-integration.herokuapp.com/slack/notify?message=${assignee}%20Finished%20working%20on%20${ticketNumber}`)
-    .then(res => { console.log('task done')})
-      this.setState(state => ({
+    .then(res=>console.log('done!'))
+    .catch(err=>console.log(err));
+
+    axios.get(`https://bstn-jira-integration.herokuapp.com/slack/user?message=Looking%20for%20things%20to%20do`)
+    .then(res=>console.log('done!'))
+    .catch(err=>console.log(err));
+
+    this.setState(state => ({
       isModalOpen: !state.isModalOpen
     }));
 
@@ -67,7 +73,9 @@ export default class TaskCard extends Component {
   }
 
   renderJiraCard = () => {
-    const { ticket, title, description, currTask } = this.props;
+
+    const { currTask } = this.props;
+
     return (
       <div className="task">
         <div className="task__section">
@@ -76,8 +84,8 @@ export default class TaskCard extends Component {
         </div>
 
         <div className="task__section">
-          <h2 className="task__title">{currTask.assignee}</h2>
-          <p className="task__description">{currTask.name}</p>
+          <h4 className="task__description">{currTask.assignee}</h4>
+          <h2 className="task__description">{currTask.name}</h2>
         </div>
 
       <div className="task__section">
@@ -100,7 +108,7 @@ export default class TaskCard extends Component {
             contentLabel="Submit"
         >   <div className="task__modal-content-container">
                 <h3 className="task__modal-prompt">Are you sure?</h3>
-                <h4 className="task__modal-prompt">This will mark <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
+                <h4 className="task__modal-prompt">This will mark your <strong>{currTask.ticketNumber}</strong> Jira ticket as completed.</h4>
                 <div className="task__modal-button-container">
                     <button className="task__button" onClick={this.handleSubmit}>Submit Complete</button>
                     <button className="task__button task__button--cancel" onClick={this.handleModalChange}>Cancel</button>
@@ -115,7 +123,7 @@ export default class TaskCard extends Component {
   }
 
 renderPersonalCardRow = (todo) => {
-  console.log(todo);
+
   return (
     <div className="task__todo" key={todo.id} data-id={todo.id} data-times={todo.value.times}>
       <span className="task__todo-name">{todo.value.goal}</span> 
@@ -127,6 +135,7 @@ renderPersonalCardRow = (todo) => {
   );
 }
 renderPersonalCard = () => {
+
   const { data } = this.props;
 
   return (
@@ -158,7 +167,10 @@ renderPersonalCard = () => {
   )
 }
   renderCard = () => {
-    const { type, data, currTask, openModal} = this.props;
+
+    const { type, data, currTask, openModal, todo} = this.props;
+    console.log(type)
+
     return (
       <>
         {(data && data.length) || currTask
@@ -170,14 +182,13 @@ renderPersonalCard = () => {
                 <span className="task__add">
                     <FontAwesomeIcon icon={faPlus} />
                 </span>
-                <h3 className="task__title--placeholder">Add Personal Goal</h3>
+                <h3 className="task__title--placeholder">{ type === "jira" ? "Add Task" : "Add Personal Goal"}</h3>
             </div>
         }
     </>
   )}
 
   render() {
-      console.log(this.props.currTask)
     return (
       this.renderCard() 
     );
