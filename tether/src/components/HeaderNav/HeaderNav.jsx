@@ -15,7 +15,7 @@ export default function HeaderNav({openModal}) {
             </nav>*/}
 
             <nav className="header__nav">
-                <button className="header__nav-link" onClick={openModal}>Create</button>
+                <button className="header__nav-link header__nav-button" onClick={openModal}>Create</button>
                 <span className="header__nav-link">Notifications</span>
                 <span className="header__nav-link">Search</span>
                 <div className="header__nav-profile"></div>

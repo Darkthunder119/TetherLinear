@@ -83,11 +83,11 @@ class CreateModal extends Component {
                           <div className="modal-form__field">
                             <label className="modal-form__label"></label>
                             <select className="modal-form__input modal-form__input--small" name="times">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
                               <option value="5">5</option>
+                              <option value="4">4</option>
+                              <option value="3">3</option>
+                              <option value="2">2</option>
+                              <option value="1">1</option>
                             </select>
                           </div>
                           <button className="modal-form__remove-btn" onClick={(e) => this.handleRemove(e)}>remove</button>
