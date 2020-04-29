@@ -29,7 +29,7 @@ class LoginPage extends Component{
         <div className="login-page">
             <div className="login-page__overlay"></div>
             <div className="login-page__header">
-                <img src={logo}/>
+                <img className="login-page__logo" src={logo}/>
             </div>
             <div className="login-page__container">
                 <div className="login-page__options">

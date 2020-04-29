@@ -1,222 +1,228 @@
 @import "../../styles/main.scss"; 
 
 .login-page {
-  width: 100vw;
-  height: 100vh;
-//   background-image: url('../../assets/images/form-bg.jpg');
-//   background-size: cover;
-//   background-position: center;
-  position: relative;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
 
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    // background-color: rgba(0,0,0,0.1);
-  }
+    &__overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        // background-color: rgba(0,0,0,0.1);
+    }
 
-  &__container {
-      width: 350px;
-      //background-color: red;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-left: 200px;
-      position: absolute;
-  }
+    &__logo {
+        height: 30px;
+    }
 
-  &__header {
-      width: 1000px;
-      display: flex;
-      flex-direction: row;
-      margin-left: 200px;
-      padding: 20px 0px;
-      position: absolute;
-  }
+    &__container {
+        width: 350px;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 200px;
+        position: absolute;
+    }
 
-  &__accent {
-      height: 100vh;
-      position: absolute;
-      top: 0;
-      right: 0;
-      //width: 200px;
-      z-index: 2;
-  }
+    &__header {
+        width: 1000px;
+        display: flex;
+        flex-direction: row;
+        margin-left: 200px;
+        padding: 30px 0px;
+        position: absolute;
+    }
 
-  &__option {
-      font-weight: 900;
-      padding-bottom: 14px;
-      color: $silver;
+    &__accent {
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+    }
 
-      &:hover {
-          cursor: pointer;
-          padding-bottom: 10px;
-          border-bottom: 4px solid $silver;
-      }
-
-      &:active {
-        border-bottom: 4px solid $seperator;
-      }
-
-      &--login {
-        padding-bottom: 10px;
-        border-bottom: 4px solid $primary;
-        color: $primary;
+    &__option {
+        font-weight: 900;
+        padding-bottom: 14px;
+        color: $silver;
 
         &:hover {
             cursor: pointer;
             padding-bottom: 10px;
+            border-bottom: 4px solid $silver;
+        }
+
+        &:active {
+            border-bottom: 4px solid $seperator;
+        }
+
+        &--login {
+            padding-bottom: 10px;
             border-bottom: 4px solid $primary;
             color: $primary;
+
+            &:hover {
+                cursor: pointer;
+                padding-bottom: 10px;
+                border-bottom: 4px solid $primary;
+                color: $primary;
+            }
         }
-      }
-  }
+    }
 
-  &__promo {
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      height: 100vh;
-      width: 50%;
-      z-index: 3;
-      top: 0;
-      right: 0;
-      margin-right: 60px;
-      justify-content: center;
-  }
+    &__promo {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        height: 100vh;
+        width: 50%;
+        z-index: 3;
+        top: 0;
+        right: 0;
+        margin-right: 60px;
+        justify-content: center;
+    }
 
-  &__seperation {
-      text-align: center;
-      margin: 40px 0px;
-      color: $silver;
-  }
+    &__seperation {
+        text-align: center;
+        margin: 40px 0px;
+        color: $silver;
+    }
 
-  &__preview {
-    //width: 400px;
-    height: 480px;
-    padding: auto;
-  }
+    &__preview {
+        //width: 400px;
+        height: 480px;
+        padding: auto;
+    }
 
-  &__options {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      justify-content: space-around;
-      margin-bottom: 50px;
-  }
+    &__options {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+        margin-bottom: 50px;
+    }
 
-  &__login {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-  }
+    &__login {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
 
-  &__input {
-      height: 50px;
-      background-color: $white;
-      margin-bottom: 15px;
-      border-radius: 4px;
-      border: 1px solid $seperator;
-      padding: 1rem;
-      font-size: 0.825rem;
-      outline: none;
-  }
+    &__input {
+        height: 50px;
+        background-color: $white;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        border: 1px solid $seperator;
+        padding: 1rem;
+        font-size: 0.825rem;
+        outline: none;
+    }
 
-  &__icon {
-      position: relative;
-      top: 0;
-      left: 0;
-      margin: auto 8px;
-      height: 18px;
-  }
+    &__icon {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: auto 8px;
+        height: 18px;
+    }
 
-  &__check {
-      margin-right: 4px;
-      margin-left: 4px;
-  }
+    &__check {
+        margin-right: 4px;
+        margin-left: 4px;
+    }
 
-  &__actions {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      margin-top: 20px;
-  }
+    &__actions {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
 
-  &__submit {
-      height: 50px;
-      width: 100%;
-      background-color: $primary;
-      border-radius: 2px;
-      border: none;
-      color: $white;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-  }
+    &__submit {
+        height: 50px;
+        width: 100%;
+        background-color: $primary;
+        border-radius: 2px;
+        border: none;
+        color: $white;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
 
-  &__forgot {
-    cursor: pointer;
-  }
+    &__forgot {
+        cursor: pointer;
+    }
 
-  &__form {
-    max-width: 600px;
-    width: 80%;
-    background-color: #FAFAFA;
-    //position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 5px;
-    // padding: 5% 10%;
-    outline: none;
-    border: none;
-    box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.12);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-  }
+    &__form {
+        max-width: 600px;
+        width: 80%;
+        background-color: #FAFAFA;
+        //position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 5px;
+        // padding: 5% 10%;
+        outline: none;
+        border: none;
+        box-shadow: 2px 2px 5px 5px rgba(0,0,0,0.12);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
 
-  &__remember {
-      @extend h4;
-      color: $black;
-      margin-bottom: 20px;
-  }
+    &__remember {
+        @extend h4;
+        color: $black;
+        margin-bottom: 20px;
+    }
 
-  &__button {
+    &__button {
     //background-color: #d6a542;
-    font-size: .9rem;
-    color: white;
-    border: none;
-    outline: none;
-    border-radius: 4px;
-    display: flex;
-    width: 100%;
-    padding: 5px;
-    cursor: pointer;
-    margin-bottom: 15px;
-    height: 50px;
-    font-weight: 500;
+        font-size: .9rem;
+        color: white;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+        cursor: pointer;
+        margin-bottom: 15px;
+        height: 50px;
+        font-weight: 500;
 
-    &--gh { 
-      background-color: $black; 
-      border: 1px solid $black; 
-      color: $white;
-      &:hover { background-color: $black; }
-    }
+        &--gh { 
+            background-color: $black; 
+            border: 1px solid $black; 
+            color: $white;
+            
+            &:hover { 
+                background-color: $black; 
+            }
+        }
 
-    &--go { 
-      background-color: $white; 
-      border: 1px solid $white;
-      border: none; 
-      color: #757575;
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
-      &:hover { background-color: #4285F4; color: $white }
+        &--go { 
+            background-color: $white; 
+            border: 1px solid $white;
+            border: none; 
+            color: #757575;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+                
+            &:hover { 
+                background-color: #4285F4; 
+                color: $white 
+            }
+        }
     }
-  }
 }
 
 /*

@@ -4,6 +4,8 @@ import { faTh, faChartBar, faStar, faQuestionCircle, faCog, faSignOutAlt } from 
 import './SideNav.scss';
 import * as firebase from 'firebase';
 
+import logo from "../../assets/icons/logo.svg";
+
 
 export default function SideNav() {
   const auth = firebase.auth();
@@ -12,7 +14,7 @@ export default function SideNav() {
   }
   return(
     <nav className="sidenav">
-      <div className="sidenav__logo">tether</div>
+      <img className="sidenav__logo" src={logo}/>
       <div className="sidenav__links">
         <ul className="sidenav__link-container">
           <li>

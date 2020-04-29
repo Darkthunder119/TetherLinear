@@ -8,6 +8,7 @@ export default class Body extends Component {
     return (
       <>
         <main className="body">
+        <h1 className="body__header">Focus</h1>
           <section className="body__taskcards">
             <TaskCard 
             ticket="#WF-102" 
@@ -15,9 +16,14 @@ export default class Body extends Component {
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
             />
             <TaskCard />
+            </section>
+            <h1 className="body__header">My Tasks</h1>
+          <section className="body__tasks">
+              
           </section>
-          <section className="body__tasks">ACTIVE TASKS SECTION</section>
-          <section className="body__backlog">BACKLOG SECTION</section>
+          <section className="body__backlog">
+
+          </section>
           <button className="temporaryButton" onClick={this.props.populateJiraTasks}>CLICK ME TO POPULATE DATABASE AND REFRESH</button>
         </main>
       </>

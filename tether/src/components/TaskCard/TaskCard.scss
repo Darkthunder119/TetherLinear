@@ -1,14 +1,32 @@
+@import "../../styles/main.scss"; 
+
 .task {
-    width: 100%;
+    width: 580px;
     min-height: 30vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: white;
-    border: 1px solid black;
+    background-color: $white;
+    border: 1px solid $seperator;
     border-radius: 15px;
-    padding: 24px;
+    padding: 40px 60px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px;
+
+    &--alt {
+        width: 580px;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $placeholder;
+        border: 1px solid $seperator;
+        border-radius: 15px;
+        padding: 40px 60px;
+        cursor: pointer;
+    }
+
     &__section {
         display: flex;
         justify-content: space-between;
@@ -17,12 +35,18 @@
             flex-direction: column;
         }
     }
+
     &__button {
         cursor: pointer;
-        background-color: #1457DB;
+        background-color: $primary;
         color: white;
         height: 30px;
         border-radius: 5px;
+        width: 180px;
+        height: 44px;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
     }
     &__options {
         cursor: pointer;
@@ -41,5 +65,23 @@
     }
     &__is-paused {
         margin-left: 10px;
+    }
+
+    &__add {
+        margin-bottom: 20px;
+        color: $text;
+    }
+
+    &__title {
+        font-weight: 900;
+        padding-bottom: 10px;
+
+        &--placeholder {
+            color: $text;
+        }
+    }
+
+    &__description {
+        padding-bottom: 20px;
     }
 }
