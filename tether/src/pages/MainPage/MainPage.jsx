@@ -50,8 +50,6 @@ class MainPage extends React.Component{
   /*=====================================================
   =         DATABASE SPECIFIC FUNCTIONS END             = 
   ======================================================*/
-
-
   retrieveUsersFromDatabase = (currentUser) => {
     this.users.once('value', snap=>{
       let user = Object.entries(snap.val()).find(user=>user[1].email===currentUser);
@@ -67,8 +65,8 @@ class MainPage extends React.Component{
       }
 
       // this block is to convert jiraTasks Object into an array instead
-      let jiraTasks = currUser.data.jiraTasks;
-      if (jiraTasks){
+      if (currUser.data.jiraTasks){
+        let jiraTasks = currUser.data.jiraTasks;
         let jiraKeys = Object.keys(jiraTasks);
         let jiraValues = Object.values(jiraTasks);
         jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
@@ -82,7 +80,6 @@ class MainPage extends React.Component{
     })
   }
   
-
   authChange = () => {
     this.auth.onAuthStateChanged((cred) => {
       if (this.mounted) {
