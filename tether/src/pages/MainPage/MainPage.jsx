@@ -21,6 +21,7 @@ class MainPage extends React.Component {
       modalIsOpen: false,
       usersList: [],
       jiraList: [],
+      jiraQueue: [],
     };
   }
   mounted = false;
@@ -148,30 +149,28 @@ class MainPage extends React.Component {
     this.mounted = false;
   }
 
-  render(){
-    if (this.state.user.id){
+  render() {
+    if (this.state.user.id) {
       const { jiraTasks, personalgoals, currentTask } = this.state.user.data;
-      
+
       return (
-      <> 
-        <SideNav />
-        <HeaderNav
-          openModal={this.openModal}
-        />
-        <CreateModal 
-          isOpen={this.state.modalIsOpen}
-          closeModal={this.closeModal}
-          currentUser={this.state.user}
-        />
-        <Body 
-          jiraTasks={jiraTasks ? jiraTasks : []} 
-          jiraList={this.state.jiraList}
-          personalGoals={personalgoals ? personalgoals : []}
-          populateJiraTasks={this.populateJiraTasks} 
-          currUser={this.state.user.id}
-          currTask={currentTask ? currentTask : null}
-        />
-      </> 
+        <>
+          <SideNav />
+          <HeaderNav openModal={this.openModal} />
+          <CreateModal
+            isOpen={this.state.modalIsOpen}
+            closeModal={this.closeModal}
+            currentUser={this.state.user}
+          />
+          <Body
+            jiraTasks={jiraTasks ? jiraTasks : []}
+            jiraList={this.state.jiraList}
+            personalGoals={personalgoals ? personalgoals : []}
+            populateJiraTasks={this.populateJiraTasks}
+            currUser={this.state.user.id}
+            currTask={currentTask ? currentTask : null}
+          />
+        </>
       );
     } else {
       return <>Loading</>;
