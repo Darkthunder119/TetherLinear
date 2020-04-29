@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import "./Body.scss";
+import TasksList from "../TasksList/TasksList";
 
 export default class Body extends Component {
   render() {
     return (
       <>
         <main className="body">
-          <section className="body__tasks">ACTIVE TASKS SECTION</section>
-          <section className="body__backlog">BACKLOG SECTION</section>
+          <section></section>
+          <section className="body__tasks">
+            <TasksList />{" "}
+          </section>
         </main>
       </>
     );
