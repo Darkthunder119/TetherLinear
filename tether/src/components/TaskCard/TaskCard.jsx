@@ -8,13 +8,18 @@ export default class TaskCard extends Component {
   constructor() {
     super();
     this.state = { 
-      checked: false
+      checked: false,
+      goalsSwitch: false
     };
     this.handleChange = this.handleChange.bind(this);
   }
      
   handleChange(checked) {
   this.setState({ checked });
+  }
+
+  handleSwitch(checked) {
+    this.setState({ goalsSwitch: checked });
   }
 
   renderJiraCard = () => {
@@ -52,9 +57,10 @@ renderPersonalCardRow = (todo) => {
   return (
     <div className="task__todo" key={todo.id} data-id={todo.id} data-times={todo.value.times}>
       <span className="task__todo-name">{todo.value.goal}</span> 
-      <span className="task__checkbox">
-        <input type="checkbox"/>
-      </span>
+      <label className="task__checkbox">
+        <input type="checkbox" className="task__checkbox-input"/>
+        <span className="task__checkmark"></span>
+      </label>
     </div>
   );
 }
@@ -63,8 +69,21 @@ renderPersonalCard = () => {
 
   return (
     <div className="task task__personal">
-      <div className="task__section">
-        <h4 className="task__ticket">Weekly Goals</h4>
+      <div className="task__section task__section--personal">
+        <div className="task__heading">
+          <h4 className="task__ticket">Daily Goals</h4>
+          <Switch
+            onChange={this.handleChange} 
+            uncheckedIcon={false} 
+            checked={this.state.checked}
+            checkedIcon={false} 
+            height={20}
+            width={38}
+            offColor="#1457DB"
+            onColor="#1457DB"
+            />
+          <h4 className="task__ticket">Weekly Progress</h4>
+        </div>
         <span className="task__options">...</span>
       </div>
 
