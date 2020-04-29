@@ -43,13 +43,11 @@ class CreateModal extends Component {
     // remove an item at the index
     this.state.goals.splice(index,1)
 
-    console.log("thingy", this.state.goals);
-
     // update the state
     this.setState({goals: this.state.goals})
   }
 
-  handleSubmit
+// NEED A HANDLE SUBMIT here
 
   render() {
   return (
