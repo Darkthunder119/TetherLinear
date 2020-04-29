@@ -170,6 +170,7 @@ class MainPage extends React.Component {
           populateJiraTasks={this.populateJiraTasks} 
           currUser={this.state.user.id}
           currTask={currentTask ? currentTask : null}
+          openModal={this.openModal}
         />
       </> 
       );

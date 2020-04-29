@@ -29,7 +29,8 @@ export default class TaskCard extends Component {
         super();
         this.state = { 
             checked: false,
-            isModalOpen: false
+            isModalOpen: false,
+            goalsSwitch: false
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -79,6 +80,10 @@ export default class TaskCard extends Component {
         isModalOpen: !state.isModalOpen
         }));  
     }
+
+  handleSwitch(checked) {
+    this.setState({ goalsSwitch: checked });
+  }
 
   renderJiraCard = () => {
     const { ticket, title, description, currTask } = this.props;
@@ -133,9 +138,10 @@ renderPersonalCardRow = (todo) => {
   return (
     <div className="task__todo" key={todo.id} data-id={todo.id} data-times={todo.value.times}>
       <span className="task__todo-name">{todo.value.goal}</span> 
-      <span className="task__checkbox">
-        <input type="checkbox"/>
-      </span>
+      <label className="task__checkbox">
+        <input type="checkbox" className="task__checkbox-input"/>
+        <span className="task__checkmark"></span>
+      </label>
     </div>
   );
 }
@@ -144,8 +150,21 @@ renderPersonalCard = () => {
 
   return (
     <div className="task task__personal">
-      <div className="task__section">
-        <span className="task__ticket">Weekly Goals</span>
+      <div className="task__section task__section--personal">
+        <div className="task__heading">
+          <h4 className="task__ticket">Daily Goals</h4>
+          <Switch
+            onChange={this.handleChange} 
+            uncheckedIcon={false} 
+            checked={this.state.checked}
+            checkedIcon={false} 
+            height={20}
+            width={38}
+            offColor="#1457DB"
+            onColor="#1457DB"
+            />
+          <h4 className="task__ticket">Weekly Progress</h4>
+        </div>
         <span className="task__options">...</span>
       </div>
 
@@ -158,7 +177,7 @@ renderPersonalCard = () => {
   )
 }
   renderCard = () => {
-    const { type, data, currTask } = this.props;
+    const { type, data, currTask, openModal} = this.props;
     return (
       <>
         {(data && data.length) || currTask
@@ -166,7 +185,7 @@ renderPersonalCard = () => {
           ? this.renderJiraCard()
           : this.renderPersonalCard()
         
-        :   <div className="task--alt">
+        :   <div className="task--alt" onClick={openModal}>
                 <span className="task__add">
                     <FontAwesomeIcon icon={faPlus} />
                 </span>
