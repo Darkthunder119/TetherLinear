@@ -30,7 +30,6 @@
         padding: 40px 60px;
         cursor: pointer;
     }
-
     &__section {
         display: flex;
         justify-content: space-between;
@@ -39,7 +38,15 @@
             flex-direction: column;
         }
     }
-
+    &__heading {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+    }
+    &__todo {
+      font-weight: 700;
+      font-size: 20px;
+    }
     &__button {
         cursor: pointer;
         background-color: $primary;
@@ -51,6 +58,14 @@
         font-size: 1rem;
         font-weight: 500;
         border: none;
+        &:hover {
+            font-weight: bold;
+          }
+        &--cancel {
+            background-color: transparent;
+            color: $primary;
+            cursor: pointer;
+        }
     }
     &__options {
         cursor: pointer;
@@ -89,8 +104,33 @@
         padding-bottom: 20px;
     }
 
+    &__modal-content-container {
+        height: 150px;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    &__modal-prompt {
+        max-width: 230px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    &__modal-button-container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 16px;
+    }
+    &__modal-button {
+
+    }
+
     &__todo {
       display: flex;
       justify-content: space-between;
+      height: 50px;
+      padding-top: 10px;
+      border-bottom: 1px solid #BFBFBF;
     }
+
 }
