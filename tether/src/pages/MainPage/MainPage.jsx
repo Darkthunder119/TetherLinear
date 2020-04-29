@@ -50,6 +50,7 @@ class MainPage extends React.Component{
   /*=====================================================
   =         DATABASE SPECIFIC FUNCTIONS END             = 
   ======================================================*/
+
   retrieveUsersFromDatabase = (currentUser) => {
     this.users.once('value', snap=>{
       let user = Object.entries(snap.val()).find(user=>user[1].email===currentUser);
@@ -59,20 +60,20 @@ class MainPage extends React.Component{
           id: user[0],
           data: user[1]
         }
+        let jiraTasks = currUser.data.jiraTasks;
+        if (jiraTasks){
+          let jiraKeys = Object.keys(jiraTasks);
+          let jiraValues = Object.values(jiraTasks);
+          jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
+          currUser.data.jiraTasks = jiraTasks; 
+        }
       } else {
         // new user route
+        currUser = currentUser;
         this.createNewUser(currentUser);
       }
 
       // this block is to convert jiraTasks Object into an array instead
-      if (currUser.data.jiraTasks){
-        let jiraTasks = currUser.data.jiraTasks;
-        let jiraKeys = Object.keys(jiraTasks);
-        let jiraValues = Object.values(jiraTasks);
-        jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
-        currUser.data.jiraTasks = jiraTasks; 
-      }
-  
       this.setState({
         user: currUser,
         usersList: snap.val()
@@ -101,6 +102,10 @@ class MainPage extends React.Component{
 
     if (!this.state.user && this.mounted) {
       authChange();
+    }
+
+    if (!this.state.user.id){
+      this.retrieveUsersFromDatabase(this.state.user)
     }
   }
 
