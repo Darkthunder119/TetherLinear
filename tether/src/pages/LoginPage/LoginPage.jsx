@@ -59,18 +59,16 @@ class LoginPage extends Component{
                         className="login-page__submit">
                         Log In
                     </button>
-                    <span className="login-page__seperation">--------------- Or ---------------</span>
-                    <div >
-                        <button onClick={this.onGoogleHandler} className="login-page__button login-page__button--go" name="face">
-                            <img className="login-page__icon" src={google} />
-                            Sign in with Google
-                        </button>
-                        <button onClick={this.onGitHubHandler} className="login-page__button login-page__button--gh" name="git">
-                            <img className="login-page__icon" src={github} />
-                            Sign in with Github
-                        </button>
-                    </div>
                 </form>
+                <span className="login-page__seperation">--------------- Or ---------------</span>
+                <button onClick={this.onGoogleHandler} className="login-page__button login-page__button--go" name="face">
+                    <img className="login-page__icon" src={google} />
+                    Sign in with Google
+                </button>
+                <button onClick={this.onGitHubHandler} className="login-page__button login-page__button--gh" name="git">
+                    <img className="login-page__icon" src={github} />
+                    Sign in with Github
+                </button>
             </div>
             <div className="login-page__promo">
                 <img className="login-page__preview" src={computers}/>

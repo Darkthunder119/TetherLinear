@@ -13,6 +13,10 @@
     padding: 40px 60px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px;
 
+    &__personal { 
+        justify-content: flex-start 
+    }
+
     &--alt {
         width: 580px;
         min-height: 30vh;
@@ -83,5 +87,10 @@
 
     &__description {
         padding-bottom: 20px;
+    }
+
+    &__todo {
+      display: flex;
+      justify-content: space-between;
     }
 }
