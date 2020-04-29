@@ -11,16 +11,20 @@
 
     &__nav {
         height: 100%;
-        width: 33.33%;
+        width: 275px;
+        margin-right: 24px;
         display: flex;
         justify-content: space-around;
         align-items: center;
     }
     &__nav-button {
-        font-size: unset;
+        font-size: 16px;
+        width: 90px;
+        height: 40px;
         border: none;
         outline: none;
         background-color: $primary;
+        border-radius: 5px;
         cursor: pointer;
         color: $white;
         padding: 5px 15px;
@@ -36,6 +40,7 @@
     &__nav-profile {
         width: 40px;
         height: 40px;
+        object-fit: cover;
         background-color: black;
         border-radius: 100%;
         opacity: 1;

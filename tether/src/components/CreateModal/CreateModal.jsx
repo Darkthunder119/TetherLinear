@@ -93,6 +93,7 @@ class CreateModal extends Component {
                             key={index}
                 
                             placeholder="Ex.: Do 15 minutes of Yoga Everyday"
+                            required
                             />
                           </div>
                           <div className="modal-form__field">
