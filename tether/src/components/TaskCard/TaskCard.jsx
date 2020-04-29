@@ -60,7 +60,8 @@ const TaskCard = (props) => {
       <div className="task__card">
         <div className="task__top">
           <div className="task__priority">
-            <span className={`task__task__priority-arrow ${textColor}`}>
+            {/*
+  <span className={`task__task__priority-arrow ${textColor}`}>
               {arrow}
             </span>{" "}
             <span className={`task__priority-text ${textColor}`}>{result}</span>
@@ -73,6 +74,8 @@ const TaskCard = (props) => {
         <div className="task__bottom">
           <h2 className="task__name">{name}</h2>
           <h4 className="task__id">#{id}</h4>
+              */}
+          </div>
         </div>
       </div>
     </>

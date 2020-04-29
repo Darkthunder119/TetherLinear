@@ -3,7 +3,33 @@ import TaskCard from "../TaskCard/TaskCard";
 import "./TasksList.scss";
 
 export default class TasksList extends Component {
-  tasks = [
+  jiraTasks = this.props.jiraTasks;
+  render() {
+    console.log(this.props.jiraTasks);
+
+    this.props.jiraTasks.map((obj) => <TaskCard {...obj} key={obj.id} />);
+
+    return (
+      <>
+        {/*
+  if (this.props.jira)
+      {this.state.jiraTasks ? (
+          <h1>My Tasks ({this.state.jiraTasks.length})</h1>
+          <div className="tasks__container">
+            {this.state.jiraTasks.map((obj) => (
+              <TaskCard {...obj} key={obj.id} />
+            ))}
+          </div>
+       ) :null
+      }
+        */}
+      </>
+    );
+  }
+}
+
+/*
+ tasks = [
     {
       id: "WP-8",
       name: "My Tasks List Component and Card Component - UI Code",
@@ -55,16 +81,4 @@ export default class TasksList extends Component {
       priority: "Lowest",
     },
   ];
-  render() {
-    return (
-      <>
-        <h1>My Tasks ({this.tasks.length})</h1>
-        <div className="tasks__container">
-          {this.tasks.map((obj) => (
-            <TaskCard {...obj} key={obj.id} />
-          ))}
-        </div>
-      </>
-    );
-  }
-}
+  */
