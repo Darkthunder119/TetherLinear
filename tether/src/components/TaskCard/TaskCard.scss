@@ -1,0 +1,96 @@
+@import "../../styles/main.scss"; 
+
+.task {
+    width: 580px;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $white;
+    border: 1px solid $seperator;
+    border-radius: 15px;
+    padding: 40px 60px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 20px;
+
+    &__personal { 
+        justify-content: flex-start 
+    }
+
+    &--alt {
+        width: 580px;
+        min-height: 30vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: $placeholder;
+        border: 1px solid $seperator;
+        border-radius: 15px;
+        padding: 40px 60px;
+        cursor: pointer;
+    }
+
+    &__section {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        &:nth-child(2) {
+            flex-direction: column;
+        }
+    }
+
+    &__button {
+        cursor: pointer;
+        background-color: $primary;
+        color: white;
+        height: 30px;
+        border-radius: 5px;
+        width: 180px;
+        height: 44px;
+        font-size: 1rem;
+        font-weight: 500;
+        border: none;
+    }
+    &__options {
+        cursor: pointer;
+        transform: rotate(270deg);
+        border: none;
+        font-size: 2rem;
+    }
+    &__add-button {
+        cursor: pointer;
+        border: none;
+        font-size: 50px;
+    }
+    &__toggle-container {
+        display: flex;
+        align-items: center;
+    }
+    &__is-paused {
+        margin-left: 10px;
+    }
+
+    &__add {
+        margin-bottom: 20px;
+        color: $text;
+    }
+
+    &__title {
+        font-weight: 900;
+        padding-bottom: 10px;
+
+        &--placeholder {
+            color: $text;
+        }
+    }
+
+    &__description {
+        padding-bottom: 20px;
+    }
+
+    &__todo {
+      display: flex;
+      justify-content: space-between;
+    }
+}

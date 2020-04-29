@@ -1,6 +1,10 @@
 import React from 'react';
 //import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faBell } from '@fortawesome/free-solid-svg-icons'
 import './HeaderNav.scss';
+
+import user from "../../assets/images/Mohan-muruge.jpg";
 
 export default function HeaderNav({openModal}) {
   
@@ -15,10 +19,14 @@ export default function HeaderNav({openModal}) {
             </nav>*/}
 
             <nav className="header__nav">
-                <button className="header__nav-link header__nav-button" onClick={openModal}>Create</button>
-                <span className="header__nav-link">Notifications</span>
-                <span className="header__nav-link">Search</span>
-                <div className="header__nav-profile"></div>
+                <button className="header__nav-button" onClick={openModal}>Create</button>
+                <span className="header__nav-link">
+                    <FontAwesomeIcon icon={faBell} />
+                </span>
+                <span className="header__nav-link">
+                    <FontAwesomeIcon icon={faSearch} />
+                </span>
+                <img className="header__nav-profile" src={user}/>
             </nav>
         </header>
     )

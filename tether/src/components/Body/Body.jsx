@@ -1,32 +1,32 @@
 import React, { Component } from "react";
 import "./Body.scss";
+import TaskCard from "../TaskCard/TaskCard";
 import JiraList from "../JiraList/JiraList";
 
 export default class Body extends Component {
   render() {
-    console.log(this.props.jiraList);
-    let tasks = <JiraList jiraList={this.props.jiraList} />;
-    /*
-   
-    if (this.props.jiraTasks !== undefined) {
-      tasks = <TasksList jiraTasks={this.props.jiraTasks} />;
-    } else {
-      tasks = <div>NO DATA, click BUTTON</div>;
-    }
-    */
+    const { personalGoals, jiraTasks, jiraList, currUser } = this.props;
+    console.log(jiraTasks);
+    console.log(personalGoals);
     return (
       <>
         <main className="body">
-          <section></section>
-          <section className="body__tasks">{tasks}</section>
-          {/*
- <button
-            className="temporaryButton"
-            onClick={this.props.populateJiraTasks}
-          >
-            CLICK ME TO POPULATE DATABASE AND REFRESH
-          </button>
-          */}
+          <h1 className="body__header">Focus</h1>
+          <section className="body__taskcards">
+            <TaskCard
+              type="jira"
+              data={[
+                "placeholder to be changed later by actual jira ticket array",
+              ]}
+              ticket="#WF-102"
+              title="UI For Components"
+              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
+            />
+            <TaskCard type="personal" data={personalGoals} />
+          </section>
+          <section className="body__tasks">
+            <JiraList jiraList={jiraList} currUser={currUser} />
+          </section>
         </main>
       </>
     );

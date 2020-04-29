@@ -6,6 +6,8 @@ import {
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
 import "./JiraCard.scss";
+import "firebase/firebase-database";
+import firebase from "firebase/app";
 
 const JiraCard = (props) => {
   let result;
@@ -57,10 +59,30 @@ const JiraCard = (props) => {
   };
   priorityFn(props.priority);
   arrowFn(props.priority);
-  console.log(props);
+  //console.log(props);
 
+  const setToFocus = () => {
+    console.log(props.currUser);
+    let objTask = {
+      ticketNumber: props.id,
+      name: props.name,
+      assignee: props.assignee,
+      priority: props.priority,
+    };
+    firebase
+      .database()
+      .ref("users/" + props.currUser)
+      .child("currentTask")
+      .update(objTask);
+  };
   return (
-    <div className="jira__card">
+    <div
+      className="jira__card"
+      onClick={() => {
+        // console.log("trigger", props.id);
+        setToFocus();
+      }}
+    >
       <div className="jira__top">
         <div className="jira__priority">
           <span className={`jira__priority-arrow ${textColor}`}>{arrow}</span>{" "}

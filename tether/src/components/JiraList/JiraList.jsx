@@ -11,7 +11,7 @@ export default class JiraList extends Component {
         <h1>
           Tasks ({this.props.jiraList.filter((val) => val[2] != "Done").length})
         </h1>
-        <div className="tasks__container">
+        <div className="jira__container">
           {this.props.jiraList
             .filter((val) => val[2] != "Done")
             .map((item) => {
@@ -21,6 +21,7 @@ export default class JiraList extends Component {
                   name={item[3]}
                   assignee={item[5]}
                   priority={item[4]}
+                  currUser={this.props.currUser}
                 />
               );
             })}

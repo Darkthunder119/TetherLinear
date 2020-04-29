@@ -66,8 +66,17 @@ class MainPage extends React.Component {
   =         DATABASE SPECIFIC FUNCTIONS END             = 
   ======================================================*/
 
+  convertObjectToArray = (obj) => {
+    let keysArray = Object.keys(obj);
+    let valuesArray = Object.values(obj);
+    obj = keysArray.map((key, i) => {
+      return { id: key, value: valuesArray[i] };
+    });
+    return obj;
+  };
+
   retrieveUsersFromDatabase = (currentUser) => {
-    this.users.once("value", (snap) => {
+    this.users.on("value", (snap) => {
       let user = Object.entries(snap.val()).find(
         (user) => user[1].email === currentUser
       );
@@ -77,14 +86,18 @@ class MainPage extends React.Component {
           id: user[0],
           data: user[1],
         };
+
         let jiraTasks = currUser.data.jiraTasks;
+        let personalGoals = currUser.data.personalgoals;
+
         if (jiraTasks) {
-          let jiraKeys = Object.keys(jiraTasks);
-          let jiraValues = Object.values(jiraTasks);
-          jiraTasks = jiraKeys.map((key, i) => {
-            return { id: key, value: jiraValues[i] };
-          });
-          currUser.data.jiraTasks = jiraTasks;
+          currUser.data.jiraTasks = this.convertObjectToArray(jiraTasks);
+        }
+
+        if (personalGoals) {
+          currUser.data.personalgoals = this.convertObjectToArray(
+            personalGoals
+          );
         }
       } else {
         // new user route
@@ -92,7 +105,6 @@ class MainPage extends React.Component {
         this.createNewUser(currentUser);
       }
 
-      // this block is to convert jiraTasks Object into an array instead
       this.setState({
         user: currUser,
         usersList: snap.val(),
@@ -138,7 +150,7 @@ class MainPage extends React.Component {
 
   render() {
     if (this.state.user.id) {
-      const { jiraTasks } = this.state.user.data;
+      const { jiraTasks, personalgoals } = this.state.user.data;
 
       return (
         <>
@@ -150,9 +162,11 @@ class MainPage extends React.Component {
             currentUser={this.state.user}
           />
           <Body
+            jiraTasks={jiraTasks ? jiraTasks : []}
             jiraList={this.state.jiraList}
-            jiraTasks={jiraTasks}
+            personalGoals={personalgoals ? personalgoals : []}
             populateJiraTasks={this.populateJiraTasks}
+            currUser={this.state.user.id}
           />
         </>
       );

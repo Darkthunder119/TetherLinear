@@ -1,8 +1,9 @@
-.tasks {
+.jira {
   &__container {
     display: flex;
     flex-wrap: wrap;
     position: relative;
-    width: 80%;
+    width: 90%;
+    margin-top: 20px;
   }
 }
