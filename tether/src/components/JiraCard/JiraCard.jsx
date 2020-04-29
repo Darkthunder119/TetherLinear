@@ -5,10 +5,9 @@ import {
   faArrowUp,
   faArrowDown,
 } from "@fortawesome/free-solid-svg-icons";
-import "./TaskCard.scss";
+import "./JiraCard.scss";
 
-const TaskCard = (props) => {
-  //const { number, name, priority } = props;
+const JiraCard = (props) => {
   let result;
   let textColor;
 
@@ -61,53 +60,26 @@ const TaskCard = (props) => {
   console.log(props);
 
   return (
-    <div className="task__card">
-      <div className="task__top">
-        <div className="task__priority">
-          <span className={`task__task__priority-arrow ${textColor}`}>
-            {arrow}
-          </span>{" "}
-          <span className={`task__priority-text ${textColor}`}>
+    <div className="jira__card">
+      <div className="jira__top">
+        <div className="jira__priority">
+          <span className={`jira__priority-arrow ${textColor}`}>{arrow}</span>{" "}
+          <span className={`jira__priority-text ${textColor}`}>
             {props.priority}
           </span>
         </div>
-        <div className="task__kebab">
+        <div className="jira__kebab">
           <FontAwesomeIcon icon={faEllipsisV} />
         </div>
       </div>
-      <div className="task__bottom">
-        <h2 className="task__name">{props.name}</h2>
+      <div className="jira__bottom">
+        <h2 className="jira__name">{props.name}</h2>
 
-        <h3 className="task__assignee">{props.assignee}</h3>
+        <h3 className="jira__assignee">{props.assignee}</h3>
 
-        <h4 className="task__id">#{props.id}</h4>
+        <h4 className="jira__id">#{props.id}</h4>
       </div>
     </div>
   );
 };
-export default TaskCard;
-
-/*
-  return (
-
-    <>
-     
-  <div className="task__card">
-        <div className="task__top">
-          <div className="task__priority">
-            <span className={`task__task__priority-arrow ${textColor}`}>
-              {arrow}
-            </span>{" "}
-            <span className={`task__priority-text ${textColor}`}>{result}</span>
-          </div>
-
-          <div className="task__kebab">
-            <FontAwesomeIcon icon={faEllipsisV} />
-          </div>
-        </div>
-        <div className="task__bottom">
-          <h2 className="task__name">{name}</h2>
-          <h4 className="task__id">#{number}</h4>
-        </div>
-      </div>
-      */
+export default JiraCard;

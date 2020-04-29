@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./Body.scss";
-import TasksList from "../TasksList/TasksList";
+import JiraList from "../JiraList/JiraList";
 
 export default class Body extends Component {
   render() {
     console.log(this.props.jiraList);
-    let tasks = <TasksList jiraList={this.props.jiraList} />;
+    let tasks = <JiraList jiraList={this.props.jiraList} />;
     /*
    
     if (this.props.jiraTasks !== undefined) {
