@@ -4,6 +4,7 @@ import TaskCard from "../TaskCard/TaskCard";
 
 export default class Body extends Component {
   render() {
+    console.log(this.props.jiraTasks);
     return (
       <>
         <main className="body">

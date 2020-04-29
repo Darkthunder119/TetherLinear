@@ -1,29 +1,75 @@
 import React from 'react';
-import SideNav from '../../components/SideNav/SideNav'
+import SideNav from '../../components/SideNav/SideNav';
 import Body from "../../components/Body/Body";
+import HeaderNav from '../../components/HeaderNav/HeaderNav';
 import "./MainPage.scss";
-import * as firebase from "firebase";
-import HeaderNav from '../../components/HeaderNav/HeaderNav'
+import firebase from "firebase/app";
+import 'firebase/firebase-auth';
+import 'firebase/firebase-database';
 class MainPage extends React.Component{
   constructor(props){
     super(props);
     this.auth = firebase.auth();
+    this.users = firebase.database().ref('users');
     this.state = {
       user: "",
+      usersList: [],
     };
   }
   mounted = false;
 
-  authChange() {
+  /*=====================================================
+  =  DATABASE SPECIFIC FUNCTIONS (ONLY FOR POPULATIONS) = 
+  ======================================================*/
+
+  populateJiraTasks = () => {
+    const { id } = this.state.user;
+
+    this.users.child(id + '/jiraTasks').push({
+      isCompleted: false,
+      isInProgress: false,
+      name: 'somerandomtext', 
+      priority: 'high',
+      ticketNumber: 'WF-203',
+      details: 'John is really awesome I like his eyes'
+    })
+  }
+
+  /*=====================================================
+  =         DATABASE SPECIFIC FUNCTIONS END             = 
+  ======================================================*/
+
+
+  retrieveUsersFromDatabase = (currentUser) => {
+    this.users.once('value', snap=>{
+      let user = Object.entries(snap.val()).find(user=>user[1].email===currentUser);
+      let currUser = {
+        id: user[0],
+        data: user[1]
+      }
+
+      // this block is to convert jiraTasks Object into an array instead
+      let jiraTasks = currUser.data.jiraTasks;
+      let jiraKeys = Object.keys(jiraTasks);
+      let jiraValues = Object.values(jiraTasks);
+      jiraTasks = jiraKeys.map((key,i)=>{ return { id: key, value: jiraValues[i] } })
+      currUser.data.jiraTasks = jiraTasks; 
+  
+      this.setState({
+        user: currUser,
+        usersList: snap.val()
+      })
+    })
+  }
+  
+
+  authChange = () => {
     this.auth.onAuthStateChanged((cred) => {
       if (this.mounted) {
         if (cred) {
-          this.setState({ user: cred.email }, () =>
-            console.log("statechanged", this.state.user)
-          );
+          this.retrieveUsersFromDatabase(cred.email);
         } else {
           this.props.history.push("/login");
-          console.log("signout detected since no login");
         }
       }
     });
@@ -32,26 +78,34 @@ class MainPage extends React.Component{
   componentDidMount() {
     this.mounted=true;  
     this.authChange();
-    console.log("didMount");
   }
   componentDidUpdate() {
+    const { authChange } = this;
+
     if (!this.state.user && this.mounted) {
-      this.authChange();
-      console.log('hello');
+      authChange();
     }
-    console.log("didUpdate");
+    // THIS IS TO POPULATE THE DAMN TABLE
+    // if (this.state.user.id){
+    //   this.populateJiraTasks();
+    // }
   }
 
   componentWillUnmount(){
-      this.mounted=false;
+    this.mounted=false;
   }
 
   render(){
-    return <>
-      <SideNav />
-      <HeaderNav />
-      <Body />
-    </>
+    if (this.state.user.id){
+      const { jiraTasks } = this.state.user.data;
+      return <> 
+        <SideNav />
+        <HeaderNav />
+        <Body jiraTasks={jiraTasks}/>
+      </>
+    } else {
+      return <>Loading</>
+    }
   }
 }
 
