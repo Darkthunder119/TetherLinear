@@ -2,6 +2,7 @@ import React from 'react';
 import SideNav from '../../components/SideNav/SideNav';
 import Body from "../../components/Body/Body";
 import HeaderNav from '../../components/HeaderNav/HeaderNav';
+import CreateModal from "../../components/CreateModal/CreateModal";
 import "./MainPage.scss";
 import firebase from "firebase/app";
 import 'firebase/firebase-auth';
@@ -13,10 +14,20 @@ class MainPage extends React.Component{
     this.users = firebase.database().ref('users');
     this.state = {
       user: "",
+      modalIsOpen: false,
       usersList: [],
     };
   }
   mounted = false;
+
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = (e) => {
+    e.preventDefault();
+    this.setState({ modalIsOpen: false });
+  };
 
   /*=====================================================
   =  DATABASE SPECIFIC FUNCTIONS (ONLY FOR POPULATIONS) = 
@@ -118,7 +129,14 @@ class MainPage extends React.Component{
       const { jiraTasks } = this.state.user.data;
       return <> 
         <SideNav />
-        <HeaderNav />
+        <HeaderNav
+          openModal={this.openModal}
+        />
+        <CreateModal 
+          isOpen={this.state.modalIsOpen}
+          closeModal={this.closeModal}
+          currentUser={this.state.user}
+        />
         <Body jiraTasks={jiraTasks} populateJiraTasks={this.populateJiraTasks}/>
       </>
     } else {
