@@ -4,6 +4,8 @@ import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import LoginPage from './pages/LoginPage/LoginPage'
 import MainPage from './pages/MainPage/MainPage';
 
+import "./styles/main.scss";
+
 
 function App() {
   return (

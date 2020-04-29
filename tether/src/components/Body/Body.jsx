@@ -10,6 +10,7 @@ export default class Body extends Component {
     return (
       <>
         <main className="body">
+        <h1 className="body__header">Focus</h1>
           <section className="body__taskcards">
             <TaskCard 
               type="jira"
@@ -23,6 +24,7 @@ export default class Body extends Component {
               data={personalGoals}
             />
           </section>
+          <h1 className="body__header">My Tasks</h1>
           <section className="body__tasks">ACTIVE TASKS SECTION</section>
           <section className="body__backlog">BACKLOG SECTION</section>
           <button className="temporaryButton" 

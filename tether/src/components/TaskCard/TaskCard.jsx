@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 import './TaskCard.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import Switch from "react-switch";
 
 export default class TaskCard extends Component {
@@ -20,12 +22,12 @@ export default class TaskCard extends Component {
     return (
       <div className="task">
         <div className="task__section">
-          <span className="task__ticket">{ticket}</span>
+          <h4 className="task__ticket">{ticket}</h4>
           <span className="task__options">...</span>
         </div>
 
         <div className="task__section">
-          <h4 className="task__title">{title}</h4>
+          <h2 className="task__title">{title}</h2>
           <p className="task__description">{description}</p>
         </div>
 
@@ -83,10 +85,12 @@ renderPersonalCard = () => {
           ? this.renderJiraCard()
           : this.renderPersonalCard()
         
-        : <div className="task">
-            <button className="task__add-button">+</button>
-            <h4 className="task__title">Add Next Task</h4>
-          </div>
+        :   <div className="task--alt">
+                <span className="task__add">
+                    <FontAwesomeIcon icon={faPlus} />
+                </span>
+                <h3 className="task__title--placeholder">Add Personal Goal</h3>
+            </div>
         }
     </>
   )}
