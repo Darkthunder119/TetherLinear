@@ -41,13 +41,13 @@
     padding-left: 18px;
     border: 1px solid lightgrey;
     border-radius: 5px;
-    background: #FAFAFA;
+    background: #fafafa;
     resize: none;
 
-    &::placeholder{
+    &::placeholder {
       color: black;
     }
-    &:focus{
+    &:focus {
       outline: none;
     }
     &--small {
@@ -79,7 +79,8 @@
     border: none;
     border-radius: 50%;
     margin: 10px 0;
-    background-color: #1457DB;
+    background-color: #1457db;
+    cursor: pointer;
   }
   &__buttonwrap {
     margin-top: 40px;
@@ -96,14 +97,14 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    color:#1457DB;
+    color: #1457db;
     cursor: pointer;
     &:hover {
       font-weight: bold;
     }
 
     &--blue {
-      background-color: #1457DB;
+      background-color: #1457db;
       color: white;
       cursor: pointer;
       &:hover {
