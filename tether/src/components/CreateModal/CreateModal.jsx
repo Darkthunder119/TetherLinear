@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./CreateModal.scss";
 import Modal from "react-modal";
+import firebase from "firebase/app";
+import 'firebase/firebase-database';
 
 const modalStyles = {
   content: {
@@ -47,14 +49,29 @@ class CreateModal extends Component {
     this.setState({goals: this.state.goals})
   }
 
-// NEED A HANDLE SUBMIT here
+  handleSubmit = (e, i) => {
+    e.preventDefault();
+
+    // let goalsArr = []
+    for (i=0; i < this.state.goals.length; i++) {
+      let goalObj = {
+        goal: e.target[`goal${i}`].value,
+        times: e.target[`times${i}`].value
+      }
+      firebase.database().ref("users/"+this.props.currentUser.id).child("personalgoals").push(goalObj);
+      // goalsArr.push(goalObj);
+    }
+    this.props.closeModal(e);
+  }
 
   render() {
+    console.log("goals", this.state.goals)
+    console.log("current user", this.props.currentUser)
   return (
     <>
     {this.props.isOpen && (
       <Modal isOpen={this.props.isOpen} style={modalStyles}>
-         <form onSubmit="handleSubmit" className="modal-form">
+         <form onSubmit={this.handleSubmit} className="modal-form">
            <div className="modal-form__top">
               <h2 className="modal-form__heading">Personal Goals</h2>
               <p>Create Your Weekly Personal Goals. </p>
@@ -70,9 +87,9 @@ class CreateModal extends Component {
                           <div className="modal-form__field">
                             <label className="modal-form__label"></label>
                             <input
-                            onChange={(e) => this.handleChange(e)}
+                            // onChange={(e) => this.handleChange(e)}
                             className="modal-form__input"
-                            name="name"
+                            name={`goal${index}`}
                             key={index}
                 
                             placeholder="Ex.: Do 15 minutes of Yoga Everyday"
@@ -80,7 +97,7 @@ class CreateModal extends Component {
                           </div>
                           <div className="modal-form__field">
                             <label className="modal-form__label"></label>
-                            <select className="modal-form__input modal-form__input--small" name="times">
+                            <select className="modal-form__input modal-form__input--small" name={`times${index}`}>
                               <option value="5">5</option>
                               <option value="4">4</option>
                               <option value="3">3</option>

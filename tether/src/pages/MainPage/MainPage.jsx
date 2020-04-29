@@ -135,6 +135,7 @@ class MainPage extends React.Component{
         <CreateModal 
           isOpen={this.state.modalIsOpen}
           closeModal={this.closeModal}
+          currentUser={this.state.user}
         />
         <Body jiraTasks={jiraTasks} populateJiraTasks={this.populateJiraTasks}/>
       </>
