@@ -6,7 +6,7 @@ export default class TaskCard extends Component {
     constructor() {
         super();
         this.state = { 
-            checked: false 
+            checked: false
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -15,12 +15,10 @@ export default class TaskCard extends Component {
         this.setState({ checked });
         }
 
-        handleClick(checked) {
-        this.setState({ checked });
-        }
+        //handleClick(checked) {
+        //}
 
     render() {
-        const active = this.props;
         const { ticket, title, description } = this.props;
 
     return (
@@ -30,7 +28,7 @@ export default class TaskCard extends Component {
         ?   <div className="task">
                 <div className="task__section">
                     <span className="task__ticket">{ticket}</span>
-                    <button className="task__options">...</button>
+                        <button className="task__options">...</button>
                 </div>
 
                 <div className="task__section">
@@ -39,18 +37,21 @@ export default class TaskCard extends Component {
                 </div>
 
                 <div className="task__section">
+                    <div className="task__toggle-container">
                     <Switch 
                         onChange={this.handleChange} 
                         uncheckedIcon={false} 
                         checked={this.state.checked}
                         checkedIcon={false} 
                     />
+                    <span className="task__is-paused">{this.state.checked && "paused"}</span>
+                    </div>
                     <button className="task__button" onClick={this.onClick}>Mark as Complete</button>
                 </div>
             </div>
         
         :   <div className="task">
-                <span className="task__add">+</span>
+                <button className="task__add-button">+</button>
                 <h4 className="task__title">Add Next Task</h4>
             </div>
         }
