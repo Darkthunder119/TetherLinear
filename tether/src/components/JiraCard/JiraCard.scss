@@ -1,0 +1,66 @@
+.jira {
+  &__card {
+    width: 250px;
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    //border: 1px solid grey;
+    box-shadow: 0.5px 1px #888888;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 10px;
+    justify-content: space-between;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__priority {
+    font-size: small;
+    margin-top: 0px;
+  }
+  &__bottom {
+    bottom: 0px;
+    margin-bottom: 0px;
+  }
+  &__name {
+    font-size: medium;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  &__assignee {
+    font-size: small;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  &__id {
+    color: grey;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: small;
+  }
+}
+
+.dark-red {
+  color: darkred;
+}
+
+.red {
+  color: red;
+}
+.orange {
+  color: orange;
+}
+
+.dark-green {
+  color: darkgreen;
+}
+
+.green {
+  color: green;
+}
