@@ -4,21 +4,29 @@ import TaskCard from "../TaskCard/TaskCard";
 
 export default class Body extends Component {
   render() {
-    console.log(this.props.jiraTasks)
+    const { personalGoals, jiraTasks } = this.props;
+    console.log(jiraTasks);
+    console.log(personalGoals)
     return (
       <>
         <main className="body">
           <section className="body__taskcards">
             <TaskCard 
-            ticket="#WF-102" 
-            title="UI For Components" 
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
+              type="jira"
+              data={['placeholder to be changed later by actual jira ticket array']}
+              ticket="#WF-102" 
+              title="UI For Components" 
+              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur laudantium, dolorum sed velit cum rem aperiam deserunt ad id laborum neque nostrum iste sequi accusantium sapiente quibusdam eum eos incidunt."
             />
-            <TaskCard />
+            <TaskCard 
+              type="personal"
+              data={personalGoals}
+            />
           </section>
           <section className="body__tasks">ACTIVE TASKS SECTION</section>
           <section className="body__backlog">BACKLOG SECTION</section>
-          <button className="temporaryButton" onClick={this.props.populateJiraTasks}>CLICK ME TO POPULATE DATABASE AND REFRESH</button>
+          <button className="temporaryButton" 
+            onClick={this.props.populateJiraTasks}>CLICK ME TO POPULATE DATABASE AND REFRESH</button>
         </main>
       </>
     );
