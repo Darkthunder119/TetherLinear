@@ -135,7 +135,7 @@ class MainPage extends React.Component {
     //   this.setState({ jiraList: response.data });
     // });
 
-    axios.get('https://cors-anywhere.herokuapp.com/https://team15hackathon.atlassian.net/rest/api/3/search?jql=project=WP', {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}})
+    axios.get('https://team15hackathon.atlassian.net/rest/api/3/search?jql=project=WP', {headers: {'Authorization': 'Basic Z3VydGFqY2hoYWJyYUBnbWFpbC5jb206WGFqVlN2Tnc5RHJvWm52dWxlN0EzNDQw'}})
     .then(res=> {
       let list = res.data.issues.map(val=>[val.key, val.fields.project.name, val.fields.status.name, val.fields.summary, val.fields.priority.name, val.fields.assignee.displayName] )
       this.setState({jiraList: list })
