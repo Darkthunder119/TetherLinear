@@ -12,7 +12,7 @@ This boilerplate has the following on top of the base image:
 -   Prettier
 -   ESLint config with massive ruleset based on extensive research
 -   RadixUI Dialog Primitive
--   Firebase
+-   Firebase (see .env.example file)
 -   TailwindCSS with a custom theme palette.
 
 ### `yarn start`
