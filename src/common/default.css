@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    .dialogContent {
+        @apply bg-offWhite rounded-md fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 max-w-[500px] max-h-[800px]
+    }
+    .dialogOverlay {
+        @apply bg-secondaryWheat fixed inset-0 opacity-10
+    }
+    .successButtonWithIcon {
+        @apply bg-lightSeaGreen rounded-md p-2 text-lg text-isabelline flex gap-2 justify-center items-center
+    }
+    .closeButton {
+        @apply rounded-full bg-redsSalmon text-offWhite top-2 right-2 absolute h-6 w-6 flex justify-center items-center hover:cursor-pointer
+    }
+}
