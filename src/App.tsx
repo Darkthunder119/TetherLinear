@@ -3,6 +3,7 @@ import React from 'react';
 import DefaultDialog from './common/DefaultDialog';
 
 function App() {
+    // testing linear's link
     return (
         <div className="bg-primaryPetrol w-screen h-screen">
             <header className="flex justify-center items-center w-full h-full flex-col">
