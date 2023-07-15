@@ -1,5 +1,3 @@
-import React from 'react';
-
 import DefaultDialog from './common/DefaultDialog';
 
 function App() {
