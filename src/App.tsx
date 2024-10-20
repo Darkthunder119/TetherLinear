@@ -6,7 +6,9 @@ function App() {
     return (
         <div className="bg-primaryPetrol w-screen h-screen">
             <header className="flex justify-center items-center w-full h-full flex-col">
-                <span className="text-offWhite text-xl">Boilerplate with Husky and TailwindCSS</span>
+                <span className="text-offWhite text-xl">
+                    Boilerplate with Husky and TailwindCSS updated for Oct 2024
+                </span>
                 <DefaultDialog
                     triggerText="Click Me"
                     dialogTitle="Test Modal"
