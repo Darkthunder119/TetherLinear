@@ -2,10 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
-const ERROR_TEXT_MAP = {
-    404: "Sorry, that page doesn't exist!",
-    ERROR: 'An error occured!',
-};
+import { ERROR_TEXT_MAP } from '../lib/constants';
 
 interface ErrorProps {
     type?: 'ERROR' | '404';
