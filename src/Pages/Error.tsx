@@ -1,32 +1,16 @@
-import { useEffect, useState } from 'react';
+import { Link, useRouteError, ErrorResponse } from 'react-router-dom';
 
-import { Link } from 'react-router-dom';
+const Error = () => {
+    const error = useRouteError() as ErrorResponse;
 
-import { ERROR_TEXT_MAP } from '../lib/constants';
-
-interface ErrorProps {
-    type?: 'ERROR' | '404';
-}
-
-const Error = ({ type = 'ERROR' }: ErrorProps) => {
-    const [displayText, setDisplayText] = useState('');
-
-    useEffect(() => {
-        if (type === 'ERROR') {
-            setDisplayText(ERROR_TEXT_MAP.ERROR);
-        } else {
-            setDisplayText(ERROR_TEXT_MAP[404]);
-        }
-    }, []);
-
-    if (!displayText) {
-        return null;
-    }
+    console.error(error);
 
     return (
-        <div className="text-offWhite text-xl text-center">
-            <div>{displayText}</div>
-            <Link to="/">Return to Home Page</Link>
+        <div className="bg-primaryPetrol w-screen h-screen text-offWhite text-xl flex justify-center items-center flex-col">
+            <div>{error.statusText || 'Oops! An unexpected error occurred'}</div>
+            <Link to="/" className="underline">
+                Return to Home Page
+            </Link>
         </div>
     );
 };
