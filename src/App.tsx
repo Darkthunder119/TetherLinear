@@ -1,22 +1,25 @@
-import React from 'react';
+import { createBrowserRouter, RouterProvider, Outlet, useRouteError } from 'react-router-dom';
 
-import DefaultDialog from './common/DefaultDialog';
+import Dashboard from './Pages/Dashboard';
+import Error from './Pages/Error';
+import HomePage from './Pages/HomePage';
 
-function App() {
-    return (
-        <div className="bg-primaryPetrol w-screen h-screen">
-            <header className="flex justify-center items-center w-full h-full flex-col">
-                <span className="text-offWhite text-xl">
-                    Boilerplate with Husky and TailwindCSS updated for Oct 2024
-                </span>
-                <DefaultDialog
-                    triggerText="Click Me"
-                    dialogTitle="Test Modal"
-                    dialogDescription="testing modals with radix primitives. I like the extensibility and accessibility but holy crap it is TRULY unstyled. Need to do all styling myself using Tailwind"
-                />
-            </header>
-        </div>
-    );
-}
+// Router configuration
+const router = createBrowserRouter([
+    {
+        path: '/',
+        element: <HomePage />,
+        errorElement: <Error />,
+        children: [
+            {
+                index: true,
+                path: 'dashboard',
+                element: <Dashboard />,
+            },
+        ],
+    },
+]);
+
+const App = () => <RouterProvider router={router} />;
 
 export default App;
