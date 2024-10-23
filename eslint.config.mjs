@@ -175,7 +175,6 @@ export default [
             'import/named': 'off',
             'import/newline-after-import': 'warn',
             'import/no-duplicates': 'warn',
-            'import/no-unresolved': 'error',
             '@typescript-eslint/no-unused-vars': ['warn'],
             'react/prop-types': 'off',
             'react/display-name': 'off',
