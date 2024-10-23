@@ -4,9 +4,9 @@ import { getAuth } from 'firebase/auth';
 let app;
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_PUBLIC_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
+    apiKey: import.meta.env.VITE_FIREBASE_PUBLIC_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
 };
 
 if (getApps().length) {

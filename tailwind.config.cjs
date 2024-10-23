@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+    darkMode: ['class'],
     content: ['./src/**/*.{js,ts,jsx,tsx}'],
     theme: {
         extend: {
@@ -45,7 +46,11 @@ module.exports = {
                 xl: '24px',
                 xxl: '32px',
             },
-            borderRadius: {},
+            borderRadius: {
+                lg: 'var(--radius)',
+                md: 'calc(var(--radius) - 2px)',
+                sm: 'calc(var(--radius) - 4px)',
+            },
             dropShadow: {
                 default: '0px 4px 24px rgba(0, 0, 0, 0.25)',
             },
@@ -54,4 +59,5 @@ module.exports = {
             },
         },
     },
+    plugins: [require('tailwindcss-animate')],
 };

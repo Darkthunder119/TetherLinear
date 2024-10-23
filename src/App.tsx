@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './Pages/Dashboard';
 import Error from './Pages/Error';
 import HomePage from './Pages/HomePage';
+import LoggedOut from './Pages/LoggedOut';
 
 // Router configuration
 const router = createBrowserRouter([
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
                 element: <Dashboard />,
             },
         ],
+    },
+    {
+        path: '/logout',
+        element: <LoggedOut />,
+        errorElement: <Error />,
     },
 ]);
 

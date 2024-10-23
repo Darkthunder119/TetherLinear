@@ -1,6 +1,6 @@
-# Getting Started with this Create React App Custom Boilerplate
+# Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) then migrated over to [Vite](https://vite.dev/).
 
 ## Modifications
 
@@ -11,7 +11,7 @@ This boilerplate has the following on top of the base image:
 -   Lint-staged
 -   Prettier
 -   ESLint config with massive ruleset based on extensive research
--   RadixUI Dialog Primitive
+-   Shadcn UI components
 -   Firebase (see .env.example file)
 -   TailwindCSS with a custom theme palette.
 
