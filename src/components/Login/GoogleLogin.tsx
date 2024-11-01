@@ -1,5 +1,6 @@
 import { FC } from 'react';
 
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
 const GoogleLogin: FC = () => (
@@ -7,10 +8,12 @@ const GoogleLogin: FC = () => (
         <Card>
             <CardHeader>
                 <CardTitle>Google</CardTitle>
-                <CardDescription>Card Description</CardDescription>
+                <CardDescription>Use your Google Account to Login</CardDescription>
             </CardHeader>
             <CardContent>
-                <p>Card Content</p>
+                <Button variant="outline" className="bg-lightSeaGreen">
+                    Login with Google
+                </Button>
             </CardContent>
         </Card>
     </div>
