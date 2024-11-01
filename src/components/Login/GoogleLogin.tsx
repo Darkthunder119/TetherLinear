@@ -16,7 +16,7 @@ const GoogleLogin: FC = () => {
                     <CardDescription>Use your Google Account to Login</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Button variant="outline" className="bg-lightSeaGreen" onClick={() => signIn(auth, 'GOOGLE')}>
+                    <Button variant="outline" className="bg-gray-50" onClick={() => signIn(auth, 'GOOGLE')}>
                         Login with Google
                     </Button>
                 </CardContent>
