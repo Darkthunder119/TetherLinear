@@ -2,7 +2,7 @@ import { useState, useEffect, createContext, FC, ReactNode } from 'react';
 
 import { User, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, Auth } from 'firebase/auth';
 
-import SkeletonCard from '@/components/Skeleton/SkeletonCard';
+import { LoadingSpinner } from '@/components/ui/spinner';
 import { useToast } from '@/hooks/use-toast';
 
 import auth from '../firebase';
@@ -68,7 +68,7 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         <AuthContext.Provider value={{ currentUser, signIn, signOut }}>
             {loading ? (
                 <div className="w-screen h-screen flex items-center justify-center">
-                    <SkeletonCard />
+                    <LoadingSpinner />
                 </div>
             ) : (
                 children

@@ -57,6 +57,20 @@ module.exports = {
             boxShadow: {
                 default: 'inset 0px 0px 400px 30px',
             },
+            animation: {
+                'spin-slow': 'spin 3s linear infinite',
+                'spin-custom': 'spinner 1s linear infinite',
+            },
+            keyframes: {
+                spin: {
+                    from: {
+                        transform: 'rotate(0deg)',
+                    },
+                    to: {
+                        transform: 'rotate(360deg)',
+                    },
+                },
+            },
         },
     },
     plugins: [require('tailwindcss-animate')],
