@@ -1,7 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
+import Navbar from '@/components/NavBar/NavBar';
+
 import Login from './Login';
-import Navbar from '../components/NavBar/NavBar';
 
 const test = false;
 

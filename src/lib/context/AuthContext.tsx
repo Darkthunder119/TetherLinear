@@ -2,7 +2,8 @@ import { useState, useEffect, createContext, FC, ReactNode } from 'react';
 
 import { User, GoogleAuthProvider, GithubAuthProvider, signInWithPopup, Auth } from 'firebase/auth';
 
-import { useToast } from '../../hooks/use-toast';
+import { useToast } from '@/hooks/use-toast';
+
 import auth from '../firebase';
 
 type AuthContextType = {
