@@ -9,6 +9,8 @@ const firebaseConfig = {
     projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
 };
 
+console.log(firebaseConfig, 'testing');
+
 if (getApps().length) {
     app = getApp();
 } else {
