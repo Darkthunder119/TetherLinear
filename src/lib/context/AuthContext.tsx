@@ -9,7 +9,7 @@ import auth from '../firebase';
 type AuthContextType = {
     currentUser: User | null;
     signIn: (auth: Auth, provider: string) => Promise<void>;
-    signOut: (auth: Auth) => Promise<void>;
+    signOut: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -52,9 +52,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    const signOut = async (auth: Auth) => {
+    const signOut = async () => {
         try {
-            await signOut(auth);
+            await auth.signOut();
         } catch (error) {
             toast({
                 title: 'An Error Occurred!',
@@ -63,5 +63,9 @@ export const AuthProvider: FC<AuthProviderProps> = ({ children }) => {
         }
     };
 
-    return <AuthContext.Provider value={{ currentUser, signIn, signOut }}>{!loading && children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ currentUser, signIn, signOut }}>
+            {loading ? <>Loading...</> : children}
+        </AuthContext.Provider>
+    );
 };

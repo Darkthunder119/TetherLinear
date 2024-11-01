@@ -26,14 +26,6 @@ const LoggedOut = () => {
                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
                     <a
-                        href="/login"
-                        className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-shadesVeryDarkGrey text-offWhite hover:bg-primary/90 transition-colors"
-                    >
-                        <LogIn className="mr-2 h-4 w-4" />
-                        Log Back In
-                    </a>
-
-                    <a
                         href="/"
                         className="inline-flex items-center justify-center px-4 py-2 rounded-md bg-primaryPetrol text-offWhite hover:bg-secondary/90 transition-colors"
                     >
