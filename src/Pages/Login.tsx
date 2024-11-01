@@ -1,17 +1,22 @@
 import { FC } from 'react';
 
+import GithubLogin from '@/components/Login/GithubLogin';
+import GoogleLogin from '@/components/Login/GoogleLogin';
 import { Tabs, TabsList, TabsContent, TabsTrigger } from '@/components/ui/tabs';
 
-import LoginContainer from '../components/Login/LoginContainer';
 
 const Login: FC = () => (
     <div className="min-h-screen flex flex-col items-center justify-center p-4 bg-gray-50">
-        <Tabs defaultValue="Login" className="w-[400px]">
+        <Tabs defaultValue="google" className="w-[400px]">
             <TabsList>
-                <TabsTrigger value="Login">Login with SSO</TabsTrigger>
+                <TabsTrigger value="google">Login with Google</TabsTrigger>
+                <TabsTrigger value="github">Login with GitHub</TabsTrigger>
             </TabsList>
-            <TabsContent value="Login">
-                <LoginContainer />
+            <TabsContent value="google">
+                <GoogleLogin />
+            </TabsContent>
+            <TabsContent value="github">
+                <GithubLogin />
             </TabsContent>
         </Tabs>
     </div>

@@ -2,11 +2,11 @@ import { FC } from 'react';
 
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
-const LoginContainer: FC = () => (
+const GithubLogin: FC = () => (
     <div>
         <Card>
             <CardHeader>
-                <CardTitle>Google</CardTitle>
+                <CardTitle>GitHub</CardTitle>
                 <CardDescription>Card Description</CardDescription>
             </CardHeader>
             <CardContent>
@@ -16,4 +16,4 @@ const LoginContainer: FC = () => (
     </div>
 );
 
-export default LoginContainer;
+export default GithubLogin;
