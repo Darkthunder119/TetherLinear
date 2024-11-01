@@ -15,11 +15,11 @@ jobs:
               run: yarn
             - name: Add Env Variables
               env:
-                  VITE_FIREBASE_PUBLIC_API_KEY: '${{vars.VITE_FIREBASE_PUBLIC_API_KEY}}'
-                  VITE_FIREBASE_AUTH_DOMAIN: '${{vars.VITE_FIREBASE_AUTH_DOMAIN}}'
-                  VITE_FIREBASE_PROJECT_ID: '${{vars.VITE_FIREBASE_PROJECT_ID}}'
-                  VITE_GRAPHQL_URL: '${{vars.VITE_GRAPHQL_URL}}'
-                  VITE_LINEAR_API_KEY: '${{vars.VITE_LINEAR_API_KEY}}'
+                  VITE_FIREBASE_PUBLIC_API_KEY: $vars.VITE_FIREBASE_PUBLIC_API_KEY
+                  VITE_FIREBASE_AUTH_DOMAIN: $vars.VITE_FIREBASE_AUTH_DOMAIN
+                  VITE_FIREBASE_PROJECT_ID: $vars.VITE_FIREBASE_PROJECT_ID
+                  VITE_GRAPHQL_URL: $vars.VITE_GRAPHQL_URL
+                  VITE_LINEAR_API_KEY: $vars.VITE_LINEAR_API_KEY
               run: echo variables injected
             - name: Build
               run: yarn run build
