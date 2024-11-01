@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LogIn, Home, AlertCircle } from 'lucide-react';
+import { Home, AlertCircle } from 'lucide-react';
 
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
