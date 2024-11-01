@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Dashboard from './Pages/Dashboard';
-import Error from './Pages/Error';
-import HomePage from './Pages/HomePage';
-import LoggedOut from './Pages/LoggedOut';
+import Dashboard from '@/Pages/Dashboard';
+import Error from '@/Pages/Error';
+import HomePage from '@/Pages/HomePage';
+import LoggedOut from '@/Pages/LoggedOut';
 
 // Router configuration
 const router = createBrowserRouter([

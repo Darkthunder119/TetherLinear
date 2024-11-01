@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LogIn, Home, AlertCircle } from 'lucide-react';
 
-import { Alert, AlertDescription, AlertTitle } from '../components/ui/alert';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 
 const LoggedOut = () => {
     // If you have auth state management, you might want to clear any remaining tokens/state here
