@@ -56,8 +56,22 @@ export default [
             },
 
             'import/resolver': {
+                typescript: {},
                 node: {
                     paths: ['src'],
+                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                },
+                alias: {
+                    map: [
+                        ['@/components', './src/components'],
+                        ['@/lib', './src/lib'],
+                        ['@/styles', './src/styles'],
+                        ['@/hooks', './src/hooks'],
+                        ['@/utils', './src/utils'],
+                        ['@/types', './src/types'],
+                        ['@/contexts', './src/contexts'],
+                        ['@/config', './src/config'],
+                    ],
                     extensions: ['.js', '.jsx', '.ts', '.tsx'],
                 },
             },
@@ -156,6 +170,11 @@ export default [
                             pattern: 'react',
                             group: 'external',
                             position: 'before',
+                        },
+                        {
+                            pattern: '@/**',
+                            group: 'internal',
+                            position: 'after',
                         },
                     ],
 
